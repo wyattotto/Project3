@@ -8,11 +8,15 @@ import {
   Code,
   Grid,
   theme,
+  HStack,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
+import MentorButton from './component/MentorLogin';
+import MenteeButton from './component/MenteeLogin';
+import AboutButton from './component/About';
 
-function App() {
+export const App = () => {
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
@@ -20,23 +24,25 @@ function App() {
           <ColorModeSwitcher justifySelf="flex-end" />
           <VStack spacing={8}>
             <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn 
-            </Link>
+            <HStack spacing={10}>
+              <MentorButton />
+              <MenteeButton />
+            </HStack>
+            <AboutButton />
           </VStack>
         </Grid>
       </Box>
     </ChakraProvider>
   );
-}
+};
 
 export default App;
+
+
+
+
+
+
+
+
+
