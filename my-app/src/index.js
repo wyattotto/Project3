@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -11,9 +12,12 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <StrictMode>
     <ColorModeScript />
-    <App />
-  </StrictMode>
-);
+    <BrowserRouter>
+      <App />
+  
+    </BrowserRouter>
+  </StrictMode> 
+); 
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
