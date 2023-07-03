@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, useDisclosure, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, DrawerFooter, Input } from '@chakra-ui/react';
 
-const MenteeButton = () => {
+const MenteeLogin = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleButtonClick = () => {
@@ -40,4 +40,4 @@ const MenteeButton = () => {
   );
 };
 
-export default MenteeButton;
+export default MenteeLogin;

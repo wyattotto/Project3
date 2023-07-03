@@ -21,7 +21,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
-const MentorButton = () => {
+const MentorLogin = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [mentorOption, setMentorOption] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -176,7 +176,7 @@ const MentorButton = () => {
   );
 };
 
-export default MentorButton;
+export default MentorLogin;
 
 
 
