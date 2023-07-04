@@ -1,7 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-
+const stripe = require('stripe')('sk_test_51NOUO7Epl77pCN0Jw5cSiQXC7lra1IIpyzeGktsexxcpF1e5y2UCSXYqs5kI6kr9dSRojJKeSYiJUw4TruzdA8KI00Nl8ud4Af')
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -14,6 +14,22 @@ const server = new ApolloServer({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.post('/create-payment-intent', async (req, res) => {
+    const { amount, currency } = req.body;
+  
+    try {
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount,
+        currency,
+      });
+  
+      res.status(200).json({ clientSecret: paymentIntent.client_secret });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
