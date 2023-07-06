@@ -1,7 +1,8 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-const stripe = require('stripe')('sk_test_51NOUO7Epl77pCN0Jw5cSiQXC7lra1IIpyzeGktsexxcpF1e5y2UCSXYqs5kI6kr9dSRojJKeSYiJUw4TruzdA8KI00Nl8ud4Af')
+const stripe = require('stripe')('sk_test_51NOUO7Epl77pCN0Jw5cSiQXC7lra1IIpyzeGktsexxcpF1e5y2UCSXYqs5kI6kr9dSRojJKeSYiJUw4TruzdA8KI00Nl8ud4Af');
+
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -11,6 +12,19 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
 });
+
+// Express session middleware
+app.use(
+  session({
+    secret: 'secret',  // Replace 'secret' with your own secret phrase
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -38,7 +52,6 @@ if (process.env.NODE_ENV === 'production') {
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
-
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {

@@ -8,7 +8,12 @@ const resolvers = {
         reviews: async () => {
             return Review.find({});
         },
-        
+        roles: async (parent, args) => {
+            return User.find({
+                role: args.role
+            });
+        },
+
     },
 }
 module.exports = resolvers;
