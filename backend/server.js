@@ -1,11 +1,6 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-const session = require('express-session');  // For handling sessions
-const passport = require('passport');  // Passport.js for authentication
-
-// Passport.js configuration
-require('./config/passport')(passport);
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
@@ -17,19 +12,6 @@ const server = new ApolloServer({
     resolvers,
 });
 
-// Express session middleware
-app.use(
-  session({
-    secret: 'secret',  // Replace 'secret' with your own secret phrase
-    resave: true,
-    saveUninitialized: true
-  })
-);
-
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -40,6 +22,7 @@ if (process.env.NODE_ENV === 'production') {
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
+
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
