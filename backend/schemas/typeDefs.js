@@ -7,6 +7,7 @@ username: String!
 email: String!
 password: String!
 reviews: [Review]!
+role: String!
 }
 
 type Review {
@@ -24,6 +25,7 @@ type Auth {
 type Query {
 users: [User]
 reviews: [Review]
+roles(role: String!): [User]
 
 }
 
