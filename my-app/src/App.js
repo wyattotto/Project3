@@ -21,36 +21,50 @@ import { Signin as LoginPage } from './component/LoginPage';
 import { Footer } from './component/Footer';
 import { Header } from './component/Header';
 import { SignupPage } from './component/SignupPage';
+import MentorHomepage from './component/MentorHomepage';
+import { AppContextContainer, USER_TYPE } from './services/appContext';
+import { WhenLoggedIn, WhenNotLoggedIn } from './component/GuardShells';
+import { useAuth } from './services/authSelector';
 
 const CompContainer = ({ children }) => children ?? <></>;
 
-const LandingPage = () => (
-  <Box textAlign="center" fontSize="xl">
-    <Grid minH="100vh" p={3}>
-      <VStack spacing={8}>
-        <Logo h="40vmin" pointerEvents="none" />
-        <HStack spacing={10}>
-          <MentorLogin />
-          <MenteeLogin />
-        </HStack>
-        <Link to="/login" />
-        <AboutButton />
-      </VStack>
-    </Grid>
-  </Box>
-);
+const LandingPage = () => {
+  const { userType } = useAuth();
+  return (
+    <>
+      <WhenNotLoggedIn>
+        <Box textAlign="center" fontSize="xl">
+          <Grid minH="100vh" p={3}>
+            <VStack spacing={8}>
+              <Logo h="40vmin" pointerEvents="none" />
+              <HStack spacing={10}>
+                <MentorLogin />
+                <MenteeLogin />
+              </HStack>
+              <Link to="/login" />
+              <AboutButton />
+            </VStack>
+          </Grid>
+        </Box>
+      </WhenNotLoggedIn>
+
+      <WhenLoggedIn>
+        {userType === USER_TYPE.MENTOR ? <MentorHomepage /> : <></>}
+      </WhenLoggedIn>
+    </>
+  );
+};
 
 const RoutingComp = () => {
   return (
-    <Box h='80vh' p={4} bg='blue.200' id='appRoutingContainer'>
+    <Box h="80vh" p={4} id="appRoutingContainer">
       <Routes>
-        <Route path="/landing" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/home" element={<LandingPage />} />
+        <Route path="/home" element={<MentorHomepage/>} />
         <Route path="/profile" element={<LandingPage />} />
         <Route path="/calendar" element={<LandingPage />} />
-        <Route path="/" element={<Navigate to="/landing" />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </Box>
   );
@@ -58,11 +72,13 @@ const RoutingComp = () => {
 
 export const App = () => {
   return (
-    <ChakraProvider theme={theme}>
-      <Header />
-      <RoutingComp />
-      <Footer />
-    </ChakraProvider>
+    <AppContextContainer>
+      <ChakraProvider theme={theme}>
+        <Header />
+        <RoutingComp />
+        <Footer />
+      </ChakraProvider>
+    </AppContextContainer>
   );
 };
 
