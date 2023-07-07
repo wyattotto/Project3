@@ -1,14 +1,6 @@
 import React from 'react';
 import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-  HStack,
+  ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme, HStack,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
@@ -21,6 +13,7 @@ import { Signin as LoginPage } from './component/LoginPage';
 import { Footer } from './component/Footer';
 import { Header } from './component/Header';
 import { SignupPage } from './component/SignupPage';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const CompContainer = ({ children }) => children ?? <></>;
 
