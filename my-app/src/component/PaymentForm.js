@@ -1,35 +1,56 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+
+//publishable stripe key
+const stripePromise = loadStripe('pk_test_51NOUO7Epl77pCN0JAejf7gteaEWYGnz5uprP3UnniFAFzqq8TXRDaZbDaW3uBq4InqWwsYDAKa0CcgOTycPSgE8000LEohatan');
 
 const PaymentForm = () => {
+  const [stripe, setStripe] = useState(null);
   const [clientSecret, setClientSecret] = useState('');
+  const [paymentError, setPaymentError] = useState(null);
 
-  const handlePayment = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    stripePromise.then((stripe) => {
+      setStripe(stripe);
+    });
+  }, []);
 
-    const amount = 1000; // Example amount in cents
-    const currency = 'USD';
-
+  const handlePayment = async () => {
     try {
       const response = await fetch('/create-payment-intent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ amount, currency }),
+        body: JSON.stringify({ amount: 1000, currency: 'USD' }),
       });
 
       const { clientSecret } = await response.json();
       setClientSecret(clientSecret);
 
+      const { error } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: stripe.elements.getElement('card'),
+        },
+      });
+
+      if (error) {
+        setPaymentError(error.message);
+      } else {
+        // Payment success!
+      }
     } catch (error) {
       console.error('Error:', error);
+      setPaymentError('An error occurred during payment processing.');
     }
   };
 
   return (
-    <form onSubmit={handlePayment}>
-      <button type="submit">Make Payment</button>
-    </form>
+    <div>
+      <div id="card-element" />
+      <button onClick={handlePayment}>Make Payment</button>
+      {paymentError && <div>{paymentError}</div>}
+    </div>
   );
 };
 

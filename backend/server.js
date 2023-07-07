@@ -1,6 +1,9 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+require('dotenv').config()
+
+//private key
 const stripe = require('stripe')('sk_test_51NOUO7Epl77pCN0Jw5cSiQXC7lra1IIpyzeGktsexxcpF1e5y2UCSXYqs5kI6kr9dSRojJKeSYiJUw4TruzdA8KI00Nl8ud4Af');
 
 const { typeDefs, resolvers } = require('./schemas');
