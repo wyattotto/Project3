@@ -2,22 +2,33 @@ import { ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+import { ApolloProvider } from '@apollo/client';
+import client from './apolloClient'; 
+import { AppProvider } from './services/appContext'; 
+import { AuthProvider } from './context/authContext';
+
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
 root.render(
-  <StrictMode>
-    <ColorModeScript />
-    <BrowserRouter>
-      <App />
-  
-    </BrowserRouter>
-  </StrictMode> 
-); 
+  <AuthProvider>
+    <StrictMode>
+      <ColorModeScript />
+      <ApolloProvider client={client}>
+        {/* <AppProvider> */}
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        {/* </AppProvider> */}
+      </ApolloProvider>
+    </StrictMode>
+  </AuthProvider>
+);
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
@@ -27,4 +38,4 @@ serviceWorker.unregister();
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// reportWebVitals();
