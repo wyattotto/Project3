@@ -8,6 +8,7 @@ email: String!
 password: String!
 reviews: [Review]!
 role: String!
+focus: String!
 }
 
 type Review {
@@ -26,6 +27,7 @@ type Query {
 users: [User]
 reviews: [Review]
 roles(role: String!): [User]
+focuses(focus: String!): [User]
 
 }
 
