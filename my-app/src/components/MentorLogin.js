@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { gql, useMutation } from '@apollo/client';
 import {
   Button,
   Container,
@@ -28,6 +29,7 @@ const MentorLogin = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [isFocusable, setIsFocusable] = useState(false);
@@ -35,14 +37,36 @@ const MentorLogin = () => {
   const [isReadOnly, setIsReadOnly] = useState(false);
   const [isRequired, setIsRequired] = useState(false);
 
+  const ADD_USER = gql`
+  mutation AddUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
+      token
+      user {
+        username
+        email
+      }
+    }
+  }
+`;
+
+const [addUser, { data, loading, error }] = useMutation(ADD_USER);
+
   const handleButtonClick = () => {
     onOpen();
   };
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    console.log('submitted');
-    // Perform any other necessary actions here
+    addUser({ variables: { username: firstName + " " + lastName, email, password } })
+      .then(response => {
+        console.log(response.data);
+        // Handle response here
+        localStorage.setItem('token', response.data.addUser.token)
+      })
+      .catch(error => {
+        console.log(error);
+        // Handle error here
+      });
   };
 
   return (

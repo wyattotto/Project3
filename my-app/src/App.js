@@ -32,21 +32,19 @@ const LandingPage = () => {
   const { userType } = useAuth();
   return (
     <>
-      <WhenNotLoggedIn>
-        <Box textAlign="center" fontSize="xl">
-          <Grid minH="100vh" p={3}>
-            <VStack spacing={8}>
-              <Logo h="40vmin" pointerEvents="none" />
-              <HStack spacing={10}>
-                <MentorLogin />
-                <MenteeLogin />
-              </HStack>
-              <Link to="/login" />
-              <AboutButton />
-            </VStack>
-          </Grid>
-        </Box>
-      </WhenNotLoggedIn>
+      <Box textAlign="center" fontSize="xl">
+        <Grid minH="100vh" p={3}>
+          <VStack spacing={8}>
+            <Logo h="40vmin" pointerEvents="none" />
+            <HStack spacing={10}>
+              <MentorLogin />
+              <MenteeLogin />
+            </HStack>
+            <Link to="/login" />
+            <AboutButton />
+          </VStack>
+        </Grid>
+      </Box>
 
       <WhenLoggedIn>
         {userType === USER_TYPE.MENTOR ? <MentorHomepage /> : <></>}

@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useMutation, gql } from '@apollo/client';
 import { Button, useDisclosure, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, DrawerFooter, Input } from '@chakra-ui/react';
 
+const ADD_USER = gql`
+  mutation AddUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
+      token
+      user {
+        username
+        email
+      }
+    }
+  }
+`;
+
 const MenteeLogin = () => {
+  const [nickname, setNickname] = useState('');
+  const [addUser, { loading, error, data }] = useMutation(ADD_USER);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleButtonClick = () => {
     onOpen();
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // Perform user creation in here
+    addUser({ variables: { username: nickname, email: 'example@example.com', password: 'yourpassword' } }); //replace 'example@example.com' and 'yourpassword' with the real ones
+    if (error) {
+      console.log("Error occurred:", error);
+    } else if (data) {
+      console.log("User added successfully");
+    }
   };
 
   return (
@@ -21,12 +47,14 @@ const MenteeLogin = () => {
           <DrawerBody>
             <form
               id="my-form"
-              onSubmit={(e) => {
-                e.preventDefault();
-                console.log('submitted');
-              }}
+              onSubmit={handleFormSubmit}
             >
-              <Input name="nickname" placeholder="Type here..." />
+              <Input
+                name="nickname"
+                placeholder="Type here..."
+                value={nickname}
+                onChange={e => setNickname(e.target.value)}
+              />
             </form>
           </DrawerBody>
           <DrawerFooter>

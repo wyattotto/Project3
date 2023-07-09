@@ -6,8 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import client from './apolloClient'; 
-import { AppProvider } from './services/appContext'; 
+// import { AppProvider } from './services/appContext'; 
 import { AuthProvider } from './context/authContext';
+
 
 
 const container = document.getElementById('root');
@@ -15,6 +16,7 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <AuthProvider>
+    
     <StrictMode>
       <ColorModeScript />
       <ApolloProvider client={client}>

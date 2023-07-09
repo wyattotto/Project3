@@ -7,8 +7,21 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { USER_TYPE } from '../services/appContext';
 import { useAppContext } from '../services/authSelector';
+import { useMutation, gql } from '@apollo/client';
 
 const ROLE = { MENTOR: 'MENTOR', MENTEE: 'MENTEE' };
+
+const LOGIN_MUTATION = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        username
+        email
+      }
+    }
+  }
+`;
 
 export const Signin = () => {
   const navigate = useNavigate()
@@ -16,6 +29,23 @@ export const Signin = () => {
   const [creds, setCreds] = useState({
     email: 'email@domain.com',
     password: 'password',
+  });
+
+  const [login, { loading, error }] = useMutation(LOGIN_MUTATION, {
+    onCompleted: (data) => {
+      const { email, username, token } = data.login;
+      dispatch(['login', {
+        email,
+        username,
+        token,
+        userType: USER_TYPE.MENTOR,
+      }]);
+      navigate('/home');
+    },
+    onError: (err) => {
+      console.error("Error logging in: ", err);
+      // Handle the error in a user-friendly way
+    },
   });
 
   //show signin form with a submit button and just set fake credentials
@@ -32,6 +62,7 @@ export const Signin = () => {
 
     //send creds to the backed using graphql
     // graphql call goes here
+    login({ variables: { email: creds.email, password: creds.password } });
 
     // pretend backend was called and successful
     const getFaketoken = () => new Date().toISOString();
