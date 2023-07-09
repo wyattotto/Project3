@@ -18,13 +18,14 @@ import MenteeLogin from './component/MenteeLogin';
 import AboutButton from './component/About';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Signin as LoginPage } from './component/LoginPage';
-import { Footer } from './component/Footer';
-import { Header } from './component/Header';
-import { SignupPage } from './component/SignupPage';
+import { Footer,Header, SignupPage } from './component';
+
 import MentorHomepage from './component/MentorHomepage';
 import { AppContextContainer, USER_TYPE } from './services/appContext';
 import { WhenLoggedIn, WhenNotLoggedIn } from './component/GuardShells';
 import { useAuth } from './services/authSelector';
+import PaymentForm from './component/PaymentForm';
+import  Stripe  from './component/Test';
 
 const CompContainer = ({ children }) => children ?? <></>;
 
@@ -62,6 +63,7 @@ const RoutingComp = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={<MentorHomepage/>} />
+        <Route path="/payment" element={<PaymentForm/>} />
         <Route path="/profile" element={<LandingPage />} />
         <Route path="/calendar" element={<LandingPage />} />
         <Route path="/" element={<LandingPage />} />

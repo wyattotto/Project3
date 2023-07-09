@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import Stripe from './Test'
+// import {Elements} from '@stripe/react-stripe-js';
 
 //publishable stripe key
 const stripePromise = loadStripe('pk_test_51NOUO7Epl77pCN0JAejf7gteaEWYGnz5uprP3UnniFAFzqq8TXRDaZbDaW3uBq4InqWwsYDAKa0CcgOTycPSgE8000LEohatan');
@@ -47,6 +49,7 @@ const PaymentForm = () => {
 
   return (
     <div>
+        <Stripe />
       <div id="card-element" />
       <button onClick={handlePayment}>Make Payment</button>
       {paymentError && <div>{paymentError}</div>}
