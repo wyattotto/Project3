@@ -16,8 +16,10 @@
 -   [] mentor: fetch and show upcoming events
 - [] 
 2. setup graphql correctly
-    - login mutaion
-    - logout
-    - update user context
+    - [] login mutaion
+    - [] logout
+    - [] update user context
 
 ## Backend
+1. user
+    - [] add calendly_url // maybe should be a separate model that links to user , so a user may or may not have a calendly url

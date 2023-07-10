@@ -3,10 +3,10 @@
  */
 
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { USER_TYPE } from '../services/appContext';
-import { useAppContext } from '../services/authSelector';
+import { useAppContext, useAuth } from '../services/authSelector';
 import { useMutation, gql } from '@apollo/client';
 
 const ROLE = { MENTOR: 'MENTOR', MENTEE: 'MENTEE' };
@@ -26,6 +26,8 @@ const LOGIN_MUTATION = gql`
 export const Signin = () => {
   const navigate = useNavigate();
   const { dispatch } = useAppContext();
+  const { isLoggedIn } = useAuth();
+
   const [creds, setCreds] = useState({
     email: 'email@domain.com',
     password: 'password',
@@ -41,12 +43,11 @@ export const Signin = () => {
             email,
             username,
             userType: USER_TYPE.MENTOR,
-            calendly_url: 'https://calendly.com/demoproject3'
+            calendly_url: 'https://calendly.com/demoproject3',
           },
           token,
         },
       ]);
-      navigate('/home');
     },
     onError: err => {
       console.error('Error logging in: ', err);
@@ -71,21 +72,25 @@ export const Signin = () => {
     login({ variables: { email: creds.email, password: creds.password } });
 
     // pretend backend was called and successful
-    const getFaketoken = () => new Date().toISOString();
+    // const getFaketoken = () => new Date().toISOString();
 
-    dispatch([
-      'login',
-      {
-        email,
-        username: 'fakeaccount@domain.com',
-        token: getFaketoken(),
-        userType: USER_TYPE.MENTOR,
-      },
-    ]);
+    // dispatch([
+    //   'login',
+    //   {
+    //     email,
+    //     username: 'fakeaccount@domain.com',
+    //     token: getFaketoken(),
+    //     userType: USER_TYPE.MENTOR,
+    //   },
+    // ]);
 
     //auto route to home
-    navigate('/home');
+    // navigate('/home');
   };
+
+  useEffect(() => {
+    isLoggedIn && navigate('/home'); //kick the userto hom if they are logged
+  }, [isLoggedIn, navigate]);
 
   return (
     <form onSubmit={handleSubmit}>
