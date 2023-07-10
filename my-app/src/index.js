@@ -1,4 +1,8 @@
 import reportWebVitals from './reportWebVitals';
+import { ColorModeScript } from '@chakra-ui/react';
+import React, { StrictMode } from 'react';
+import * as ReactDOM from 'react-dom/client';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -6,18 +10,35 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import App from './App';
 
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+} from '@apollo/client';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <ChakraProvider>
-      <Router>
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_URI,
+  cache: new InMemoryCache(),
+});
+
+
+
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+
+root.render(
+  <StrictMode>
+    <ColorModeScript />
+    <ApolloProvider client={client}>
+      {/* <AppProvider> */}
+      <BrowserRouter>
         <App />
-      </Router>
-    </ChakraProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+      </BrowserRouter>
+      {/* </AppProvider> */}
+    </ApolloProvider>
+  </StrictMode>
 );
-
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
