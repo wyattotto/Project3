@@ -2,7 +2,6 @@ import {
   Box,
   ChakraProvider,
   Grid,
-  theme,
   Flex,
   HStack,
   Link,
@@ -12,7 +11,6 @@ import {
 import React from 'react';
 import MentorLogin from './components/MentorLogin';
 import { Logo } from './Logo';
-
 import { Route, Routes } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
@@ -28,6 +26,7 @@ import MenteeLogin from './components/MenteeLogin';
 import { AppContextContainer, USER_TYPE } from './services/appContext';
 import { useAuth } from './services/authSelector';
 import MenteeHomepage from './components/MenteeHomepage'
+import { Navigate } from 'react-router-dom'
 
 const CompContainer = ({ children }) => children ?? <></>;
 

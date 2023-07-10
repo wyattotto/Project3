@@ -21,11 +21,8 @@ import {
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
-<<<<<<< HEAD:my-app/src/component/MentorLogin.js
-import { EditIcon } from '@chakra-ui/icons';
-=======
+// import { EditIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
->>>>>>> main:my-app/src/components/MentorLogin.js
 
 const MentorLogin = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -112,8 +109,6 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
             </Container>
 
             <form onSubmit={handleFormSubmit}>
-<<<<<<< HEAD:my-app/src/component/MentorLogin.js
-=======
               <FormControl isRequired>
                 <FormLabel htmlFor="first-name">First name</FormLabel>
                 <Input
@@ -132,7 +127,6 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
                   onChange={e => setLastName(e.target.value)}
                 />
               </FormControl>
->>>>>>> main:my-app/src/components/MentorLogin.js
               <VStack spacing={4}>
                 <FormControl isRequired>
                   <FormLabel htmlFor="first-name">User Name</FormLabel>
@@ -185,7 +179,6 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
               <Button type="submit" form="my-form">
               Create Account
               </Button>
-<<<<<<< HEAD:my-app/src/component/MentorLogin.js
               <Container>
                 Have an account? Login below.
               </Container>
@@ -202,11 +195,9 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
                   <FormLabel htmlFor="password">Password</FormLabel>
                   <PasswordInput />
                 </FormControl>
-=======
               <Link to="/mentorhome">
                 <Button type="button">GO Mentor</Button>
               </Link>
->>>>>>> main:my-app/src/components/MentorLogin.js
             </form>
           </DrawerBody>
           <DrawerFooter>
@@ -221,7 +212,6 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
 };
 
 export default MentorLogin;
-<<<<<<< HEAD:my-app/src/component/MentorLogin.js
 
 
 
@@ -231,5 +221,3 @@ export default MentorLogin;
 
 
 
-=======
->>>>>>> main:my-app/src/components/MentorLogin.js
