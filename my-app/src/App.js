@@ -12,18 +12,18 @@ import {
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
-import MentorLogin from './component/MentorLogin';
+import MentorLogin from './components/MentorLogin';
 
-import MenteeLogin from './component/MenteeLogin';
-import AboutButton from './component/About';
+import MenteeLogin from './components/MenteeLogin';
+import AboutButton from './components/About';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Signin as LoginPage } from './component/LoginPage';
-import { Footer } from './component/Footer';
-import { Header } from './component/Header';
-import { SignupPage } from './component/SignupPage';
-import MentorHomepage from './component/MentorHomepage';
+import { Signin as LoginPage } from './pages/LoginPage';
+import { Footer } from './components/Footer';
+import { Header } from './components/Header';
+import { SignupPage } from './pages/SignupPage';
+import MentorHomepage from './pages/MentorHomepage';
 import { AppContextContainer, USER_TYPE } from './services/appContext';
-import { WhenLoggedIn, WhenNotLoggedIn } from './component/GuardShells';
+import { WhenLoggedIn, WhenNotLoggedIn } from './components/GuardShells';
 import { useAuth } from './services/authSelector';
 
 const CompContainer = ({ children }) => children ?? <></>;
@@ -32,21 +32,19 @@ const LandingPage = () => {
   const { userType } = useAuth();
   return (
     <>
-      <WhenNotLoggedIn>
-        <Box textAlign="center" fontSize="xl">
-          <Grid minH="100vh" p={3}>
-            <VStack spacing={8}>
-              <Logo h="40vmin" pointerEvents="none" />
-              <HStack spacing={10}>
-                <MentorLogin />
-                <MenteeLogin />
-              </HStack>
-              <Link to="/login" />
-              <AboutButton />
-            </VStack>
-          </Grid>
-        </Box>
-      </WhenNotLoggedIn>
+      <Box textAlign="center" fontSize="xl">
+        <Grid minH="100vh" p={3}>
+          <VStack spacing={8}>
+            <Logo h="40vmin" pointerEvents="none" />
+            <HStack spacing={10}>
+              <MentorLogin />
+              <MenteeLogin />
+            </HStack>
+            <Link to="/login" />
+            <AboutButton />
+          </VStack>
+        </Grid>
+      </Box>
 
       <WhenLoggedIn>
         {userType === USER_TYPE.MENTOR ? <MentorHomepage /> : <></>}
@@ -83,3 +81,5 @@ export const App = () => {
 };
 
 export default App;
+
+
