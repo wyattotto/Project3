@@ -28,11 +28,17 @@ export const Header = () => {
         </Link> */}
         <WhenLoggedIn>
           <>
-            <Link key={4} to="/profile">
-              Profile
+          <Link key={3} to="/home">
+              Mentor Home
             </Link>
-            <Link key={3} to="/home">
-              Home
+            <Link key={3} to="/account">
+              My Account
+            </Link>
+            <Link key={3} to="/session">
+              Session History
+            </Link>
+            <Link key={3} to="/calendar">
+              Calendar
             </Link>
           </>
         </WhenLoggedIn>
