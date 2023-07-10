@@ -1,32 +1,29 @@
-import React from 'react';
 import {
-  ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
+  ChakraProvider,
   Grid,
-  theme,
   HStack,
+  Link,
+  theme,
+  VStack,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
+import React from 'react';
+import MentorLogin from './components/MentorLogin';
 import { Logo } from './Logo';
-import MentorLogin from './component/MentorLogin';
 
-import MenteeLogin from './component/MenteeLogin';
-import AboutButton from './component/About';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { Signin as LoginPage } from './component/LoginPage';
+import { Route, Routes } from 'react-router-dom';
 import { Footer } from './component/Footer';
 import { Header } from './component/Header';
-import { SignupPage } from './component/SignupPage';
-import MentorHomepage from './component/MentorHomepage';
+import { Signin as LoginPage } from './component/LoginPage';
 import MentorAccount from './component/MentorAccount';
-import MentorSession from './component/MentorSession';
 import MentorCalendar from './component/MentorCalendar';
+import MentorHomepage from './component/MentorHomepage';
+import MentorSession from './component/MentorSession';
+import { SignupPage } from './component/SignupPage';
+import AboutButton from './components/About';
+import { WhenLoggedIn, WhenNotLoggedIn } from './components/GuardShells';
+import MenteeLogin from './components/MenteeLogin';
 import { AppContextContainer, USER_TYPE } from './services/appContext';
-import { WhenLoggedIn, WhenNotLoggedIn } from './component/GuardShells';
 import { useAuth } from './services/authSelector';
 
 const CompContainer = ({ children }) => children ?? <></>;
@@ -78,7 +75,7 @@ const RoutingComp = () => {
                 <LandingPage />
               </WhenNotLoggedIn>
               <WhenLoggedIn>
-                <MentorHomepage />
+                <HomePage />
               </WhenLoggedIn>
             </>
           }
@@ -93,7 +90,6 @@ const RoutingComp = () => {
     </Box>
   );
 };
-
 
 export const App = () => {
   return (
