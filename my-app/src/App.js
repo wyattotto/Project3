@@ -29,13 +29,13 @@ import { useAuth } from './services/authSelector';
 const CompContainer = ({ children }) => children ?? <></>;
 
 const HomePage = () => {
-  const { userType } = useAuth();
+  const { user } = useAuth();
 
   return (
     <>
       <WhenNotLoggedIn>You must be logged in</WhenNotLoggedIn>
       <WhenLoggedIn>
-        {userType === USER_TYPE.MENTOR ? <MentorHomepage /> : <></>}
+        {user?.userType === USER_TYPE.MENTOR ? <MentorHomepage /> : <></>}
       </WhenLoggedIn>
     </>
   );
