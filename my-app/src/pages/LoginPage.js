@@ -24,7 +24,7 @@ const LOGIN_MUTATION = gql`
 `;
 
 export const Signin = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { dispatch } = useAppContext();
   const [creds, setCreds] = useState({
     email: 'email@domain.com',
@@ -32,18 +32,24 @@ export const Signin = () => {
   });
 
   const [login, { loading, error }] = useMutation(LOGIN_MUTATION, {
-    onCompleted: (data) => {
+    onCompleted: data => {
       const { email, username, token } = data.login;
-      dispatch(['login', {
-        email,
-        username,
-        token,
-        userType: USER_TYPE.MENTOR,
-      }]);
+      dispatch([
+        'login',
+        {
+          user: {
+            email,
+            username,
+            userType: USER_TYPE.MENTOR,
+            calendly_url: 'https://calendly.com/demoproject3'
+          },
+          token,
+        },
+      ]);
       navigate('/home');
     },
-    onError: (err) => {
-      console.error("Error logging in: ", err);
+    onError: err => {
+      console.error('Error logging in: ', err);
       // Handle the error in a user-friendly way
     },
   });
@@ -67,16 +73,18 @@ export const Signin = () => {
     // pretend backend was called and successful
     const getFaketoken = () => new Date().toISOString();
 
-    dispatch(['login', {
-      email,
-      username: 'fakeaccount@domain.com',
-      token: getFaketoken(),
-      userType: USER_TYPE.MENTOR
-    }]);
+    dispatch([
+      'login',
+      {
+        email,
+        username: 'fakeaccount@domain.com',
+        token: getFaketoken(),
+        userType: USER_TYPE.MENTOR,
+      },
+    ]);
 
     //auto route to home
-    navigate('/home')
-
+    navigate('/home');
   };
 
   return (

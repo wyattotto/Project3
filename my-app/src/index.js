@@ -5,9 +5,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
-
-
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  gql,
+} from '@apollo/client';
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_URI,

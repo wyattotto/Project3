@@ -6,7 +6,7 @@ function MentorHomepage() {
   // make a grid of repeat(3,1fr) using chakra ui
 
   return (
-    <Grid templateColumns="repeat(3, 1fr)" templateRows="repeat(2,1fr)" gap={4} style={{height: '100%'}}>
+    <Grid templateColumns="repeat(3, 1fr)" templateRows="50% 50%" gap={4} style={{height: '100%'}}>
       <Box bg="ActiveBorder" gridColumn="1 / 1">
         <ProfileImage />
       </Box>
