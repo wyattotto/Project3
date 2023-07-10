@@ -11,6 +11,30 @@ import { AuthProvider } from './context/authContext';
 
 
 
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_URI,
+  cache: new InMemoryCache(),
+});
+
+// const client = ...
+
+client
+  .query({
+    query: gql`
+      query GetLocations {
+        locations {
+          id
+          name
+          description
+          photo
+        }
+      }
+    `,
+  })
+  .then((result) => console.log(result));
+
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
