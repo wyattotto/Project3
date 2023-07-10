@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import React, { useState, useContext } from 'react';
+import { useMutation, gql } from '@apollo/react-hooks';
 import { Button, useDisclosure, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, DrawerFooter, Input } from '@chakra-ui/react';
+import { AuthContext } from '../context/authContext';
+// import {gql} from "graphql-tag"
 
 const ADD_USER = gql`
   mutation AddUser($username: String!, $email: String!, $password: String!) {
