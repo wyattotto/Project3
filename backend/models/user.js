@@ -23,6 +23,9 @@ const userSchema = new Schema({
   role: {
     type: String,
   },
+  focus: {
+    type: String,
+  },
   
   reviews: [
     {
