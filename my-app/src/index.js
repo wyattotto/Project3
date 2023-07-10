@@ -4,20 +4,16 @@ import * as ReactDOM from 'react-dom/client';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import client from './apolloClient'; 
-// import { AppProvider } from './services/appContext'; 
 import { AuthProvider } from './context/authContext';
 
 
 
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
-// const client = new ApolloClient({
-//   uri: process.env.REACT_APP_URI,
-//   cache: new InMemoryCache(),
-// });
-
-// const client = ...
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_URI,
+  cache: new InMemoryCache(),
+});
 
 client
   .query({
