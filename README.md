@@ -6,5 +6,5 @@
 3. run `npm run dev` to start frontend and client
 
 # Technologies
-    - frontend: react and apollo graphql client
+    - frontend: react and apollo graphql client, chakra-ui, react-router-dom
     - backend: nodejs, mongodb , apollo grapqhl server
