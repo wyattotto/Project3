@@ -3,10 +3,10 @@
  */
 
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { USER_TYPE } from '../services/appContext';
-import { useAppContext } from '../services/authSelector';
+import { useAppContext, useAuth } from '../services/authSelector';
 import { useMutation, gql } from '@apollo/client';
 
 const ROLE = { MENTOR: 'MENTOR', MENTEE: 'MENTEE' };
@@ -24,26 +24,33 @@ const LOGIN_MUTATION = gql`
 `;
 
 export const Signin = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { dispatch } = useAppContext();
+  const { isLoggedIn } = useAuth();
+
   const [creds, setCreds] = useState({
     email: 'email@domain.com',
     password: 'password',
   });
 
   const [login, { loading, error }] = useMutation(LOGIN_MUTATION, {
-    onCompleted: (data) => {
+    onCompleted: data => {
       const { email, username, token } = data.login;
-      dispatch(['login', {
-        email,
-        username,
-        token,
-        userType: USER_TYPE.MENTOR,
-      }]);
-      navigate('/home');
+      dispatch([
+        'login',
+        {
+          user: {
+            email,
+            username,
+            userType: USER_TYPE.MENTOR,
+            calendly_url: 'https://calendly.com/demoproject3',
+          },
+          token,
+        },
+      ]);
     },
-    onError: (err) => {
-      console.error("Error logging in: ", err);
+    onError: err => {
+      console.error('Error logging in: ', err);
       // Handle the error in a user-friendly way
     },
   });
@@ -63,21 +70,11 @@ export const Signin = () => {
     //send creds to the backed using graphql
     // graphql call goes here
     login({ variables: { email: creds.email, password: creds.password } });
-
-    // pretend backend was called and successful
-    const getFaketoken = () => new Date().toISOString();
-
-    dispatch(['login', {
-      email,
-      username: 'fakeaccount@domain.com',
-      token: getFaketoken(),
-      userType: USER_TYPE.MENTOR
-    }]);
-
-    //auto route to home
-    navigate('/home')
-
   };
+
+  useEffect(() => {
+    isLoggedIn && navigate('/home'); //kick the userto hom if they are logged
+  }, [isLoggedIn, navigate]);
 
   return (
     <form onSubmit={handleSubmit}>

@@ -31,13 +31,13 @@ export const Header = () => {
           <Link key={3} to="/home">
               Mentor Home
             </Link>
-            <Link key={3} to="/account">
+            <Link key={1} to="/account">
               My Account
             </Link>
-            <Link key={3} to="/session">
+            <Link key={4} to="/session">
               Session History
             </Link>
-            <Link key={3} to="/calendar">
+            <Link key={8} to="/calendar">
               Calendar
             </Link>
           </>
@@ -47,7 +47,7 @@ export const Header = () => {
           <Link key={1} to="/login">
             Login
           </Link>
-          <Link key={1} to="/signup">
+          <Link key={10} to="/signup">
             Signup
           </Link>
         </WhenNotLoggedIn>
