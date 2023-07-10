@@ -70,22 +70,6 @@ export const Signin = () => {
     //send creds to the backed using graphql
     // graphql call goes here
     login({ variables: { email: creds.email, password: creds.password } });
-
-    // pretend backend was called and successful
-    // const getFaketoken = () => new Date().toISOString();
-
-    // dispatch([
-    //   'login',
-    //   {
-    //     email,
-    //     username: 'fakeaccount@domain.com',
-    //     token: getFaketoken(),
-    //     userType: USER_TYPE.MENTOR,
-    //   },
-    // ]);
-
-    //auto route to home
-    // navigate('/home');
   };
 
   useEffect(() => {
