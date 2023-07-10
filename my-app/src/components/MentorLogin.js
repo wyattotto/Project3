@@ -17,10 +17,11 @@ import {
   Select,
   FormHelperText,
   FormErrorMessage,
-  Switch,
-  SimpleGrid,
   VStack,
+  InputGroup,
+  InputRightElement,
 } from '@chakra-ui/react';
+// import { EditIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 
 const MentorLogin = () => {
@@ -69,6 +70,26 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
       });
   };
 
+  const PasswordInput = () => {
+    const [show, setShow] = useState(false);
+    const handleClick = () => setShow(!show);
+
+    return (
+      <InputGroup size="md">
+        <Input
+          pr="4.5rem"
+          type={show ? 'text' : 'password'}
+          placeholder="Enter password"
+        />
+        <InputRightElement width="4.5rem">
+          <Button h="1.75rem" size="sm" onClick={handleClick}>
+            {show ? 'Hide' : 'Show'}
+          </Button>
+        </InputRightElement>
+      </InputGroup>
+    );
+  };
+
   return (
     <>
       <Button size="lg" onClick={handleButtonClick}>
@@ -108,6 +129,19 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
               </FormControl>
               <VStack spacing={4}>
                 <FormControl isRequired>
+                  <FormLabel htmlFor="first-name">User Name</FormLabel>
+                  <Input
+                    id="User-name"
+                    placeholder="User Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor="password">Password</FormLabel>
+                  <PasswordInput />
+                </FormControl>
+                <FormControl isRequired>
                   <FormLabel htmlFor="email">Email</FormLabel>
                   <Input
                     id="email"
@@ -126,7 +160,7 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
                 </FormControl>
               </VStack>
               <VStack spacing={4}>
-                <FormControl>
+                {/* <FormControl>
                   <FormLabel>Years of Experience</FormLabel>
                   <Select
                     placeholder="Select option"
@@ -137,69 +171,40 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
                     <option value="option2">1-5 Years</option>
                     <option value="option3">5+</option>
                   </Select>
-                </FormControl>
+                </FormControl> */}
               </VStack>
               <VStack spacing={6}>
-                <FormControl as={SimpleGrid} columns={{ base: 2, lg: 4 }}>
-                  <FormLabel htmlFor="isChecked">Monday:</FormLabel>
-                  <Switch
-                    id="isChecked"
-                    isChecked={isChecked}
-                    onChange={() => setIsChecked(!isChecked)}
-                  />
-
-                  <FormLabel htmlFor="isDisabled">Tuesday:</FormLabel>
-                  <Switch
-                    id="isDisabled"
-                    isChecked={isDisabled}
-                    onChange={() => setIsDisabled(!isDisabled)}
-                  />
-
-                  <FormLabel htmlFor="isFocusable">Wednesday:</FormLabel>
-                  <Switch
-                    id="isFocusable"
-                    isChecked={isFocusable}
-                    onChange={() => setIsFocusable(!isFocusable)}
-                  />
-
-                  <FormLabel htmlFor="isInvalid">Thursday:</FormLabel>
-                  <Switch
-                    id="isInvalid"
-                    isChecked={isInvalid}
-                    onChange={() => setIsInvalid(!isInvalid)}
-                  />
-
-                  <FormLabel htmlFor="isReadOnly">Friday:</FormLabel>
-                  <Switch
-                    id="isReadOnly"
-                    isChecked={isReadOnly}
-                    onChange={() => setIsReadOnly(!isReadOnly)}
-                  />
-
-                  <FormLabel htmlFor="isRequired">Saturday:</FormLabel>
-                  <Switch
-                    id="isRequired"
-                    isChecked={isRequired}
-                    onChange={() => setIsRequired(!isRequired)}
-                  />
-
-                  <FormLabel htmlFor="isRequired">Sunday:</FormLabel>
-                  <Switch
-                    id="isRequired"
-                    isChecked={isRequired}
-                    onChange={() => setIsRequired(!isRequired)}
-                  />
-                </FormControl>
+                {/* Add any form controls or elements you want here */}
               </VStack>
               <Button type="submit" form="my-form">
-                Save
+              Create Account
               </Button>
+              <Container>
+                Have an account? Login below.
+              </Container>
+              <FormControl isRequired>
+                  <FormLabel htmlFor="first-name">User Name</FormLabel>
+                  <Input
+                    id="User-name"
+                    placeholder="User Name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormLabel htmlFor="password">Password</FormLabel>
+                  <PasswordInput />
+                </FormControl>
               <Link to="/mentorhome">
                 <Button type="button">GO Mentor</Button>
               </Link>
             </form>
           </DrawerBody>
-          <DrawerFooter></DrawerFooter>
+          <DrawerFooter>
+          <Button type="submit" form="my-form">
+              Login
+            </Button>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
@@ -207,3 +212,12 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
 };
 
 export default MentorLogin;
+
+
+
+
+
+
+
+
+

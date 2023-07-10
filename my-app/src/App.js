@@ -2,6 +2,7 @@ import {
   Box,
   ChakraProvider,
   Grid,
+  Flex,
   HStack,
   Link,
   theme,
@@ -10,7 +11,6 @@ import {
 import React from 'react';
 import MentorLogin from './components/MentorLogin';
 import { Logo } from './Logo';
-
 import { Route, Routes } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
@@ -25,6 +25,8 @@ import { WhenLoggedIn, WhenNotLoggedIn } from './components/GuardShells';
 import MenteeLogin from './components/MenteeLogin';
 import { AppContextContainer, USER_TYPE } from './services/appContext';
 import { useAuth } from './services/authSelector';
+import MenteeHomepage from './components/MenteeHomepage'
+import { Navigate } from 'react-router-dom'
 
 const CompContainer = ({ children }) => children ?? <></>;
 
@@ -82,6 +84,10 @@ const RoutingComp = () => {
         />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/home" element={<LandingPage />} />
+        <Route path="/profile" element={<LandingPage />} />
+        <Route path="/mentee-homepage" element={<MenteeHomepage />} />
+        <Route path="/" element={<Navigate to="/landing" />} />
         <Route path="/account" element={<MentorAccount />} />
         <Route path="/session" element={<MentorSession />} />
         <Route path="/calendar" element={<MentorCalendar />} />
@@ -90,6 +96,7 @@ const RoutingComp = () => {
     </Box>
   );
 };
+
 
 export const App = () => {
   return (
@@ -104,3 +111,8 @@ export const App = () => {
 };
 
 export default App;
+
+
+
+
+
