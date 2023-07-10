@@ -8,3 +8,16 @@
 # Technologies
     - frontend: react and apollo graphql client, chakra-ui, react-router-dom
     - backend: nodejs, mongodb , apollo grapqhl server
+
+# Todos 
+- list of pending/ completed work
+## Frontent
+1. calendar
+-   [] mentor: fetch and show upcoming events
+- [] 
+2. setup graphql correctly
+    - login mutaion
+    - logout
+    - update user context
+
+## Backend
