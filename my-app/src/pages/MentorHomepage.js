@@ -1,5 +1,6 @@
 import { Box, Grid } from '@chakra-ui/layout';
 import React from 'react';
+import MentorCalendar from '../components/MentorCalendar';
 import MentorReminder from '../components/MentorReminder';
 function MentorHomepage() {
   // make a grid of repeat(3,1fr) using chakra ui
@@ -15,11 +16,11 @@ function MentorHomepage() {
       <Box bg="ActiveBorder" gridColumn="1 / 1">
         <GeneralInfo />
       </Box>
+      <Box bg="ActiveBorder" gridColumn="2 / 2">
+        <Calendar /> 
+      </Box>
       <Box bg="ActiveBorder" gridColumn="3 / 3" gridRow="1 / 3">
         <MentorReminder />
-      </Box>
-      <Box bg="ActiveBorder" gridColumn="2 / 2">
-        <Calendar />
       </Box>
     </Grid>
   );
@@ -38,7 +39,7 @@ function GeneralInfo() {
 }
 
 function Calendar() {
-  return <div>calendar</div>;
+  return <MentorCalendar />;
 }
 
 function Reviews() {
