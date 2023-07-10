@@ -22,16 +22,31 @@ import { Footer } from './component/Footer';
 import { Header } from './component/Header';
 import { SignupPage } from './component/SignupPage';
 import MentorHomepage from './component/MentorHomepage';
+import MentorAccount from './component/MentorAccount';
+import MentorSession from './component/MentorSession';
+import MentorCalendar from './component/MentorCalendar';
 import { AppContextContainer, USER_TYPE } from './services/appContext';
 import { WhenLoggedIn, WhenNotLoggedIn } from './component/GuardShells';
 import { useAuth } from './services/authSelector';
 
 const CompContainer = ({ children }) => children ?? <></>;
 
-const LandingPage = () => {
+const HomePage = () => {
   const { userType } = useAuth();
+
   return (
     <>
+      <WhenNotLoggedIn>You must be logged in</WhenNotLoggedIn>
+      <WhenLoggedIn>
+        {userType === USER_TYPE.MENTOR ? <MentorHomepage /> : <></>}
+      </WhenLoggedIn>
+    </>
+  );
+};
+const LandingPage = () => {
+  return (
+    <>
+      <WhenLoggedIn>You are logged in already </WhenLoggedIn>
       <WhenNotLoggedIn>
         <Box textAlign="center" fontSize="xl">
           <Grid minH="100vh" p={3}>
@@ -47,10 +62,6 @@ const LandingPage = () => {
           </Grid>
         </Box>
       </WhenNotLoggedIn>
-
-      <WhenLoggedIn>
-        {userType === USER_TYPE.MENTOR ? <MentorHomepage /> : <></>}
-      </WhenLoggedIn>
     </>
   );
 };
@@ -59,16 +70,30 @@ const RoutingComp = () => {
   return (
     <Box h="80vh" p={4} id="appRoutingContainer">
       <Routes>
+        <Route
+          path="/home"
+          element={
+            <>
+              <WhenNotLoggedIn>
+                <LandingPage />
+              </WhenNotLoggedIn>
+              <WhenLoggedIn>
+                <MentorHomepage />
+              </WhenLoggedIn>
+            </>
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/home" element={<MentorHomepage/>} />
-        <Route path="/profile" element={<LandingPage />} />
-        <Route path="/calendar" element={<LandingPage />} />
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/account" element={<MentorAccount />} />
+        <Route path="/session" element={<MentorSession />} />
+        <Route path="/calendar" element={<MentorCalendar />} />
+        {/* <Route path="/" element={<LandingPage />} /> */}
       </Routes>
     </Box>
   );
 };
+
 
 export const App = () => {
   return (
