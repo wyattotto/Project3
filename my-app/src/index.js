@@ -1,23 +1,23 @@
-import { ColorModeScript } from '@chakra-ui/react';
-import React, { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ChakraProvider } from '@chakra-ui/react';
+import App from './App';
 
-const container = document.getElementById('root');
-const root = ReactDOM.createRoot(container);
 
-root.render(
-  <StrictMode>
-    <ColorModeScript />
-    <BrowserRouter>
-      <App />
-  
-    </BrowserRouter>
-  </StrictMode> 
-); 
+ReactDOM.render(
+  <React.StrictMode>
+    <ChakraProvider>
+      <Router>
+        <App />
+      </Router>
+    </ChakraProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
