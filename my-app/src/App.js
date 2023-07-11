@@ -9,8 +9,10 @@ import {
   Grid,
   theme,
   Flex,
+  Container,
+  WrapItem,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
+// import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
 import MentorLogin from './component/MentorLogin';
 import MenteeLogin from './component/MenteeLogin';
@@ -21,6 +23,7 @@ import { Footer } from './component/Footer';
 import { Header } from './component/Header';
 import { SignupPage } from './component/SignupPage';
 import MenteeHomepage from './component/MenteeHomepage';
+import { Outlet } from 'react-router-dom';
 
 const CompContainer = ({ children }) => children ?? <></>;
 
@@ -45,16 +48,39 @@ const RoutingComp = () => {
   return (
     <Box>
       <Routes>
+        {/* Existing routes */}
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={<LandingPage />} />
         <Route path="/profile" element={<LandingPage />} />
         <Route path="/calendar" element={<LandingPage />} />
-        <Route path="/mentee-homepage" element={<MenteeHomepage />} />
+
+        {/* Nested route */}
+        <Route path="/mentee/*" element={<MenteeParent />}>
+          <Route path="mentee-test" element={<MenteeHomepage />} />
+        </Route>
+
+        {/* Default route */}
         <Route path="/" element={<Navigate to="/landing" />} />
       </Routes>
     </Box>
+  );
+};
+
+
+
+const MenteeParent = () => {
+  return (
+    <>
+      
+       
+       <MenteeHomepage/>  
+     
+     
+      
+    
+    </>
   );
 };
 
@@ -63,6 +89,7 @@ export const App = () => {
   return (
     <ChakraProvider theme={theme}>
       <Header />
+      <Container/>
       <RoutingComp />
       <Footer />
     </ChakraProvider>
