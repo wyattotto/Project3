@@ -4,70 +4,102 @@
       "email": "bkernighan@techfriends.dev",
       "password": "password01",
       "role": "Product Manager",
-      "focus": "JavaScript"
+      "focus": "JavaScript",
+      "about": "Product Manager at Google",
+      "education": "Georgia Institute of Technology",
+      "why": "I would be able to help others grow and develop into the best versions of themselves"
+
     },
     {
       "username": "Max Kanat-Alexander",
       "email": "mkanatalexander@techfriends.dev",
       "password": "password02",
       "role": "Product Manager",
-      "focus": "Resume Builder"
+      "focus": "Resume Builder",
+      "about": "Product Manager at Amazon",
+      "education": "Georgia Institute of Technology",
+      "why": "I would be able to help others grow and develop into the best versions of themselves"
     },
     {
       "username": "Kyle Stewart",
       "email": "ks@techfriends.dev",
       "password": "password03",
       "role": "Software Engineer",
-      "focus": "Mock Interviews"
+      "focus": "Mock Interviews",
+      "about": "Software Engineer II at Google",
+      "education": "Georgia Institute of Technology",
+      "why": "I would be able to help others grow and develop into the best versions of themselves"
     },
     {
       "username": "Kent Beck",
       "email": "kbeck@techfriends.dev",
       "password": "password04",
       "role": "Software Engineer",
-      "focus": "Resume Builder"
+      "focus": "Networking",
+      "about": "Software Engineer at Facebook",
+      "education": "Georgia Institute of Technology",
+      "why": "I would be able to help others grow and develop into the best versions of themselves"
     },
     {
       "username": "Edward V. Berard",
       "email": "evberard@techfriends.dev",
       "password": "password05",
       "role": "Software Engineer",
-      "focus": "Mock Interviews"
+      "focus": "Mock Interviews",
+      "about": "Software Engineer at Microsoft",
+      "education": "University of Michigan",
+      "why": "I would be able to help others grow and develop into the best versions of themselves"
     },
     {
       "username": "Alan Kay",
       "email": "akay@techfriends.dev",
       "password": "password06",
       "role": "Software Engineer",
-      "focus": "Mock Interviews"
+      "focus": "Mock Interviews",
+      "about": "Software Engineer at Amazon",
+      "education": "University of Michigan",
+      "why": "I would be able to help others grow and develop into the best versions of themselves"
+
     },
     {
       "username": "C.A.R. Hoare",
       "email": "choare@techfriends.dev",
       "password": "password07",
       "role": "Designer",
-      "focus": "Mock Interviews"
+      "focus": "Mock Interviews",
+      "about": "Designer at Microsoft",
+      "education": "University of Michigan",
+      "why": "I would be able to help others grow and develop into the best versions of themselves"
     },
     {
       "username": "David Thomas",
       "email": "dthomas@techfriends.dev",
       "password": "password08",
       "role": "Engineer Manager",
-      "focus": "JavaScript"
+      "focus": "JavaScript",
+      "about": "Engineer Manager at Microsoft",
+      "education": "University of Michigan",
+      "why": "I would be able to help others grow and develop into the best versions of themselves"
     },
     {
       "username": "Donald Knuth",
       "email": "dknuth@techfriends.dev",
       "password": "password09",
       "role": "Designer",
-      "focus": "JavaScript"
+      "focus": "JavaScript",
+      "about": "Designer at Google",
+      "education": "University of Michigan",
+      "why": "I would be able to help others grow and develop into the best versions of themselves"
 
     },
     {
-      "username": "Lernantino",
+      "username": "Lernantino Hill",
       "email": "lernantino@techfriends.dev",
       "password": "password10",
       "role": "Program Manager",
-      "focus": "JavaScript"
+      "focus": "JavaScript",
+      "about": "Program Manager at Google",
+      "education": "University of Michigan",
+      "why": "I would be able to help others grow and develop into the best versions of themselves"
     }
   ]

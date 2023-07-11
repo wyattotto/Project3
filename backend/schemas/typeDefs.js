@@ -9,6 +9,9 @@ password: String!
 reviews: [Review]!
 role: String!
 focus: String!
+about: String!
+education: String!
+why: String!
 }
 
 type Review {
@@ -28,6 +31,9 @@ users: [User]
 reviews: [Review]
 roles(role: String!): [User]
 focuses(focus: String!): [User]
+abouts(about: String!): [User]
+educations(education: String!): [User]
+whys(why: String!): [User]
 
 }
 
