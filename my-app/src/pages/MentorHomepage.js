@@ -6,9 +6,11 @@ function MentorHomepage() {
   // make a grid of repeat(3,1fr) using chakra ui
 
   return (
-    <Grid templateColumns="repeat(3, 1fr)" templateRows="50% 50%" gap={4} style={{height: '100%'}}>
+    <Grid templateColumns="repeat(3, 1fr)" templateRows="50% 50%" color="white" gap={4} style={{height: '100%'}}>
       <Box bg="ActiveBorder" gridColumn="1 / 1">
-        <ProfileImage />
+
+        <div><h2> Profile Image</h2>
+        </div> 
       </Box>
       <Box bg="ActiveBorder" gridColumn="2 / 2">
         <MentorAchievement />
@@ -17,7 +19,7 @@ function MentorHomepage() {
         <GeneralInfo />
       </Box>
       <Box bg="ActiveBorder" gridColumn="2 / 2">
-        <Calendar /> 
+        <Calendar />
       </Box>
       <Box bg="ActiveBorder" gridColumn="3 / 3" gridRow="1 / 3">
         <MentorReminder />
@@ -27,7 +29,8 @@ function MentorHomepage() {
 }
 
 function ProfileImage() {
-  return <div>Profile image</div>;
+
+  return <div> <h2>Profile image</h2> </div>;
 }
 
 function MentorAchievement() {

@@ -13,12 +13,12 @@ const Reminder = ({ title, date, time, comment, onOpen, onDelete }) => {
       <p>{comment}</p>
 
       <Stack direction="row">
-        <Button variant={'solid'} onClick={onOpen ?? emptyFunction}>
+        {/* <Button variant={'solid'} onClick={onOpen ?? emptyFunction}>
           Open
         </Button>
         <Button variant="solid" onClick={onDelete ?? emptyFunction}>
           Delete
-        </Button>
+        </Button> */}
       </Stack>
     </Stack>
   );
@@ -26,33 +26,40 @@ const Reminder = ({ title, date, time, comment, onOpen, onDelete }) => {
 function MentorReminder() {
   const fakeEvents = [
     {
-      title: 'title',
-      date: 'date',
-      time: 'time',
+      title: 'Mock Interview ',
+      date: 'Aug 12, 2023',
+      time: '4:00pm-4:30pm',
       comment:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, laudantium.',
+        'Entry-level developer position at Google.',
     },
     {
-      title: 'title',
-      date: 'date',
-      time: 'time',
+      title: 'Resume building',
+      date: 'Aug 14, 2023',
+      time: '1:00pm-2:00pm',
       comment:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, laudantium.',
+        'Mentee is looking for internship opportunities.',
     },
     {
-      title: 'title',
-      date: 'date',
-      time: 'time',
+      title: 'Project Management interview prep',
+      date: 'Aug 16,2023',
+      time: '9:00am-10:00am',
       comment:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, laudantium.',
+        'Mentee is transitioning to from scrum master to project mgt role.',
     },
     {
-      title: 'title',
-      date: 'date',
-      time: 'time',
+      title: 'Networking/communication Skills',
+      date: 'Aug 18,2023',
+      time: '3:00pm-4:00pm',
       comment:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, laudantium.',
+        'Mentee is looking to build vital skills for career development.',
     },
+    {
+        title: 'Full stack developer interview prep',
+        date: 'Aug 20,2023',
+        time: '2:00pm-3: 00pm',
+        comment:
+          'Mentee is looking to build vital skills for career development.',
+      },
   ].map((val, index) => {
     //use map to transfor each fake even and a number to the title and an id
     val.time += ` ${index}`;
@@ -70,7 +77,7 @@ function MentorReminder() {
   return (
     <Stack
       direction="column"
-      style={{ overflow: 'scroll', height: '100%', padding: '1.2rem' }}
+      style={{ overflow: 'scroll', height: '100%', padding: '1.2rem', color: 'white', size: '3pt' }}
     >
       <h2>Reminders</h2>
       <UnorderedList>

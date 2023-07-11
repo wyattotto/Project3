@@ -20,6 +20,7 @@ function MentorCalendar() {
   });
 
   const calendlyurl = user.calendly_url;
+  // const calendlyurl = "https://calendly.com/app/availability/schedules";
 
   const rootElement = document.getElementById('root');
   const onOpen = () => setOpen(true);
@@ -30,9 +31,10 @@ function MentorCalendar() {
       {/* <div className="App">
         <InlineWidget url={calendlyurl} />
       </div> */}
-      <Button onClick={onOpen}>Open Caledndar</Button>
+      <Button colorScheme="teal" size="lg" onClick={onOpen}>Open Calendar </Button>
+      {/* <Button colorScheme="teal" size="lg"></Button> */}
       <PopupModal
-        url={calendlyurl}
+        url={'https://calendly.com/demoproject3'}
         // pageSettings={this.props.pageSettings}
         // utm={this.props.utm}
         // prefill={this.props.prefill}
