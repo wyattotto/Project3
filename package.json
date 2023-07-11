@@ -1,20 +1,28 @@
 {
-  "name": "project3",
+  "name": "simon",
   "version": "1.0.0",
-  "description": "",
+  "description": "a mentor and mentee platform",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "npm --prefix my-app run start",
+    "backend": "npm --prefix backend run start",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\" ",
+    "install:backend": "npm --prefix backend install",
+    "install:frontend": "npm --prefix my-app install",
+    "postinstall": "npm run install:backend && npm run install:frontend"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wyattotto/Project3.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/wyattotto/Project3/issues"
   },
-  "homepage": "https://github.com/wyattotto/Project3#readme"
+  "homepage": "https://github.com/wyattotto/Project3#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
 }

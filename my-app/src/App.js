@@ -1,37 +1,51 @@
-import React from 'react';
 import {
-  ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
+  ChakraProvider,
   Grid,
-  theme,
+  Flex,
   HStack,
+  Link,
+  theme,
+  VStack,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
+import React from 'react';
+import MentorLogin from './components/MentorLogin';
 import { Logo } from './Logo';
-import MentorLogin from './component/MentorLogin';
-
-import MenteeLogin from './component/MenteeLogin';
-import AboutButton from './component/About';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { Signin as LoginPage } from './component/LoginPage';
-import { Footer } from './component/Footer';
-import { Header } from './component/Header';
-import { SignupPage } from './component/SignupPage';
-import MentorHomepage from './component/MentorHomepage';
+import { Route, Routes } from 'react-router-dom';
+import { Footer } from './components/Footer';
+import { Header } from './components/Header';
+import { Signin as LoginPage } from './pages/LoginPage';
+import MentorAccount from './components/MentorAccount';
+import MentorCalendar from './components/MentorCalendar';
+import MentorHomepage from './pages/MentorHomepage';
+import MentorSession from './components/MentorSession';
+import { SignupPage } from './pages/SignupPage';
+import AboutButton from './components/About';
+import { WhenLoggedIn, WhenNotLoggedIn } from './components/GuardShells';
+import MenteeLogin from './components/MenteeLogin';
 import { AppContextContainer, USER_TYPE } from './services/appContext';
-import { WhenLoggedIn, WhenNotLoggedIn } from './component/GuardShells';
 import { useAuth } from './services/authSelector';
+import MenteeHomepage from './components/MenteeHomepage'
+import { Navigate } from 'react-router-dom'
 
 const CompContainer = ({ children }) => children ?? <></>;
 
-const LandingPage = () => {
-  const { userType } = useAuth();
+const HomePage = () => {
+  const { user } = useAuth();
+
   return (
     <>
+      <WhenNotLoggedIn>You must be logged in</WhenNotLoggedIn>
+      <WhenLoggedIn>
+        {user?.userType === USER_TYPE.MENTOR ? <MentorHomepage /> : <></>}
+      </WhenLoggedIn>
+    </>
+  );
+};
+const LandingPage = () => {
+  return (
+    <>
+      <WhenLoggedIn>You are logged in already </WhenLoggedIn>
       <WhenNotLoggedIn>
         <Box textAlign="center" fontSize="xl">
           <Grid minH="100vh" p={3}>
@@ -47,10 +61,6 @@ const LandingPage = () => {
           </Grid>
         </Box>
       </WhenNotLoggedIn>
-
-      <WhenLoggedIn>
-        {userType === USER_TYPE.MENTOR ? <MentorHomepage /> : <></>}
-      </WhenLoggedIn>
     </>
   );
 };
@@ -59,16 +69,34 @@ const RoutingComp = () => {
   return (
     <Box h="80vh" p={4} id="appRoutingContainer">
       <Routes>
+        <Route
+          path="/home"
+          element={
+            <>
+              <WhenNotLoggedIn>
+                <LandingPage />
+              </WhenNotLoggedIn>
+              <WhenLoggedIn>
+                <HomePage />
+              </WhenLoggedIn>
+            </>
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/home" element={<MentorHomepage/>} />
+        <Route path="/home" element={<LandingPage />} />
         <Route path="/profile" element={<LandingPage />} />
-        <Route path="/calendar" element={<LandingPage />} />
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/mentee-homepage" element={<MenteeHomepage />} />
+        <Route path="/" element={<Navigate to="/landing" />} />
+        <Route path="/account" element={<MentorAccount />} />
+        <Route path="/session" element={<MentorSession />} />
+        <Route path="/calendar" element={<MentorCalendar />} />
+        {/* <Route path="/" element={<LandingPage />} /> */}
       </Routes>
     </Box>
   );
 };
+
 
 export const App = () => {
   return (
@@ -83,3 +111,8 @@ export const App = () => {
 };
 
 export default App;
+
+
+
+
+
