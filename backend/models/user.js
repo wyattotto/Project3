@@ -23,7 +23,22 @@ const userSchema = new Schema({
   role: {
     type: String,
   },
-  
+  focus: {
+    type: String,
+  },
+  about: {
+    type: String,
+  },
+  education: {
+    type: String,
+  },
+  why: {
+    type: String,
+  },
+  image_url:{
+    type: String,
+  }
+  ,
   reviews: [
     {
       type: Schema.Types.ObjectId,

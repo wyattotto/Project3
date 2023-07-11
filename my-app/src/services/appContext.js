@@ -5,10 +5,13 @@ export const USER_TYPE = { MENTOR: 'MENTOR', MENTEE: 'MENTEE' };
 // define the structure of a global data bavriable
 const initialStore = {
   auth: {
-    user: undefined,
+    user: {
+      email: undefined,
+      userType: undefined,
+      user_id: undefined,
+      calendly_url: undefined,
+    },
     token: undefined,
-    email: undefined,
-    userType: undefined,
   },
   dispatch: () => undefined,
 };
@@ -23,16 +26,19 @@ const reducer = (store, payload) => {
       return {
         ...store, //spread or re-use the previous values of the store
         auth: {
-          user: undefined,
+          user: {
+            email: undefined,
+            userType: undefined,
+            user_id: undefined,
+            calendly_url: undefined,
+          },
           token: undefined,
-          email: undefined,
-          userType: undefined,
         },
       };
     }
     case 'login': {
-      const { user, token, email, userType } = data;
-      return { ...store, auth: { user, token, email, userType } };
+      const { user, token } = data;
+      return { ...store, auth: { user, token } };
     }
     default: {
       console.log('invalid action provided');
