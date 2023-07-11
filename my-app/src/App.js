@@ -8,7 +8,7 @@ import {
   theme,
   VStack,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import MentorLogin from './components/MentorLogin';
 import { Logo } from './Logo';
 import { Route, Routes } from 'react-router-dom';
@@ -24,9 +24,10 @@ import AboutButton from './components/About';
 import { WhenLoggedIn, WhenNotLoggedIn } from './components/GuardShells';
 import MenteeLogin from './components/MenteeLogin';
 import { AppContextContainer, USER_TYPE } from './services/appContext';
-import { useAuth } from './services/authSelector';
-import MenteeHomepage from './components/MenteeHomepage'
-import { Navigate } from 'react-router-dom'
+import { useAppContext, useAuth } from './services/authSelector';
+import MenteeHomepage from './components/MenteeHomepage';
+import { Navigate } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 
 const CompContainer = ({ children }) => children ?? <></>;
 
@@ -97,8 +98,32 @@ const RoutingComp = () => {
   );
 };
 
-
 export const App = () => {
+  const auth = useAuth();
+  const { dispatch } = useAppContext();
+  const authData = { token: auth.token, user: auth.user };
+
+  // useEffect(() => {
+  //   // initialize the user when the app loads
+  //   const savedAuth = auth.getSavedAuth();
+
+  //   if (!savedAuth) {
+  //     return; //no savedAuth found return
+  //   }
+  //   //  savedAuth found, initialize the auth store
+  //   dispatch('login', savedAuth);
+  // }, []);
+
+  // // update the savedAuth if logged or
+  // const updateSavedAuth = () => {
+  //   if (!authData?.token || !auth.user) {
+  //     auth.saveAuth(undefined);
+  //   } else {
+  //     auth.saveAuth(authData);
+  //   }
+  // };
+
+  // useEffect(updateSavedAuth, [authData, auth]);
   return (
     <AppContextContainer>
       <ChakraProvider theme={theme}>
@@ -111,8 +136,3 @@ export const App = () => {
 };
 
 export default App;
-
-
-
-
-

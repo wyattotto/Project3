@@ -35,6 +35,11 @@ const resolvers = {
         why: args.why
       });
     },
+    user: async(parent,args,ctx)=>{
+      //return null if no user
+      const user = await User.findById(ctx.user._id)
+      return user
+    }
   },
 
   Mutation: {

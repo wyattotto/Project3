@@ -11,13 +11,16 @@ import {
   ApolloProvider,
   gql,
 } from '@apollo/client';
+import { AppContextContainer } from './services/appContext';
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_URI,
   cache: new InMemoryCache(),
+  // headers: {
+  //   authorization:
+  //     `bearer ${JSON.stringify(localStorage.getItem('authData')).token} ` || '',
+  // },
 });
-
-
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -25,13 +28,15 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <StrictMode>
     <ColorModeScript />
-    <ApolloProvider client={client}>
-      {/* <AppProvider> */}
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-      {/* </AppProvider> */}
-    </ApolloProvider>
+    <AppContextContainer>
+      <ApolloProvider client={client}>
+        {/* <AppProvider> */}
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+        {/* </AppProvider> */}
+      </ApolloProvider>
+    </AppContextContainer>
   </StrictMode>
 );
 

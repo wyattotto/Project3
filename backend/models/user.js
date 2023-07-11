@@ -35,7 +35,10 @@ const userSchema = new Schema({
   why: {
     type: String,
   },
-  
+  image_url:{
+    type: String,
+  }
+  ,
   reviews: [
     {
       type: Schema.Types.ObjectId,

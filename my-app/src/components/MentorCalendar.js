@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/button';
-import React, { useState } from 'react';
+import { Stack } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
 import {
   InlineWidget,
   PopupButton,
@@ -7,44 +8,68 @@ import {
   useCalendlyEventListener,
 } from 'react-calendly';
 import { useAuth } from '../services/authSelector';
+import { getCalendlyScheduledEvents } from '../services/queryMutationHooks';
 
 function MentorCalendar() {
+  const calendly_project = 'demoproject3';
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
 
   useCalendlyEventListener({
-    onProfilePageViewed: () => console.log('onProfilePageViewed'),
-    onDateAndTimeSelected: () => console.log('onDateAndTimeSelected'),
-    onEventTypeViewed: () => console.log('onEventTypeViewed'),
+    onProfilePageViewed: e => console.log('onProfilePageViewed', e),
+    onDateAndTimeSelected: e => console.log('onDateAndTimeSelected', e),
+    onEventTypeViewed: e => console.log('onEventTypeViewed', e),
     onEventScheduled: e => console.log(e.data.payload),
+    event: 'calendly.event_scheduled',
+    payload: {
+      event: {
+        uri: `https://calendly.com/api/v2/scheduled_events/${calendly_project}`,
+      },
+      invitee: {
+        uri: `https://calendly.com/api/v2/scheduled_events/${calendly_project}/invitees/`,
+      },
+    },
   });
 
   const calendlyurl = user.calendly_url;
+  // const calendlyurl = "https://calendly.com/app/availability/schedules";
+
+  const [calendlyEvents, setCalendlyEvents] = useState([]);
 
   const rootElement = document.getElementById('root');
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
 
+  // useEffect(() => {
+  //   getCalendlyScheduledEvents(calendly_project).then(data =>
+  //     setCalendlyEvents(data)
+  //   );
+  // }, []);
+
   return (
-    <>
-      {/* <div className="App">
-        <InlineWidget url={calendlyurl} />
-      </div> */}
-      <Button onClick={onOpen}>Open Caledndar</Button>
+    <Stack direction="column">
+      <Button colorScheme="teal" size="lg" onClick={onOpen}>
+        Schedule a Meeting
+      </Button>
       <PopupModal
-        url={calendlyurl}
-        // pageSettings={this.props.pageSettings}
-        // utm={this.props.utm}
-        // prefill={this.props.prefill}
+        url={`https://calendly.com/${calendly_project}`}
         onModalClose={onClose}
         open={open}
-        /*
-         * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
-         * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
-         */
         rootElement={rootElement}
       />
-    </>
+
+      <h2>Upcoming Events: {calendlyEvents.length}</h2>
+      {calendlyEvents.map(event => (
+        <div key={event.id}>
+          <h3>{event.name}</h3>
+          <p>{event.start_time}</p>
+          <p>{event.end_time}</p>
+          <p>{event.canceled}</p>
+          <p>{event.canceled_at}</p>
+          <p>{event.canceled_by}</p>
+        </div>
+      ))}
+    </Stack>
   );
 }
 export default MentorCalendar;
