@@ -26,6 +26,15 @@ const userSchema = new Schema({
   focus: {
     type: String,
   },
+  about: {
+    type: String,
+  },
+  education: {
+    type: String,
+  },
+  why: {
+    type: String,
+  },
   
   reviews: [
     {
