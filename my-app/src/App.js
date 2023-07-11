@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+'./pages/LoginPage';
+=======
 import {
   Box,
   ChakraProvider,
@@ -15,6 +18,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { Signin as LoginPage } from './pages/LoginPage';
+>>>>>>> 9d15220a14b319abd105aff936b432d2a1093430
 import MentorAccount from './components/MentorAccount';
 import MentorCalendar from './components/MentorCalendar';
 import MentorHomepage from './pages/MentorHomepage';
@@ -24,10 +28,16 @@ import AboutButton from './components/About';
 import { WhenLoggedIn, WhenNotLoggedIn } from './components/GuardShells';
 import MenteeLogin from './components/MenteeLogin';
 import { AppContextContainer, USER_TYPE } from './services/appContext';
+<<<<<<< HEAD
+import { useAuth } from './services/authSelector';
+import MenteeHomepage from './components/MenteeHomepage'
+import { Navigate } from 'react-router-dom'
+=======
 import { useAppContext, useAuth } from './services/authSelector';
 import MenteeHomepage from './components/MenteeHomepage';
 import { Navigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+>>>>>>> 9d15220a14b319abd105aff936b432d2a1093430
 
 const CompContainer = ({ children }) => children ?? <></>;
 
