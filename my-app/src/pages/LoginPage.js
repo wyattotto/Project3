@@ -24,36 +24,45 @@ const LOGIN_MUTATION = gql`
 `;
 
 export const Signin = () => {
+  const auth = useAuth();
   const navigate = useNavigate();
   const { dispatch } = useAppContext();
   const { isLoggedIn } = useAuth();
 
   const [creds, setCreds] = useState({
-    email: 'email@domain.com',
-    password: 'password',
+    email: 'bkernighan@techfriends.dev',
+    password: 'password01',
   });
 
   const [login, { loading, error }] = useMutation(LOGIN_MUTATION, {
     onCompleted: data => {
       const { email, username, token } = data.login;
-      dispatch([
-        'login',
-        {
-          user: {
-            email,
-            username,
-            userType: USER_TYPE.MENTOR,
-            calendly_url: 'https://calendly.com/demoproject3',
-          },
-          token,
+      const authData = {
+        user: {
+          email,
+          username,
+          userType: USER_TYPE.MENTOR,
+          calendly_url: 'https://calendly.com/demoproject3',
         },
-      ]);
+        token,
+      };
+
+      dispatch(['login', authData]);
+      auth.saveAuth(authData);
     },
     onError: err => {
       console.error('Error logging in: ', err);
       // Handle the error in a user-friendly way
     },
   });
+
+  const onChangeEmail = event => {
+    setCreds({ ...creds, email: event.target.value });
+  };
+
+  const onChangePassword = event => {
+    setCreds({ ...creds, password: event.target.value });
+  };
 
   //show signin form with a submit button and just set fake credentials
   const handleSubmit = (
@@ -86,7 +95,7 @@ export const Signin = () => {
           name="email"
           id="frm_email"
           value={creds.email}
-          onChange={e => setCreds(oc => ({ ...oc, email: e.value }))}
+          onChange={onChangeEmail}
         />
       </FormControl>
       {/* password */}
@@ -97,7 +106,7 @@ export const Signin = () => {
           name="password"
           id="frm_password"
           value={creds.password}
-          onChange={e => setCreds(oc => ({ ...oc, password: e.value }))}
+          onChange={onChangePassword}
         />
       </FormControl>
       {/* submit */}
