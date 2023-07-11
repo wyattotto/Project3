@@ -20,7 +20,8 @@ import {
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
-import { EditIcon } from '@chakra-ui/icons';
+// import { EditIcon } from '@chakra-ui/icons';
+import { Link } from 'react-router-dom';
 
 const MentorLogin = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -39,7 +40,7 @@ const MentorLogin = () => {
     onOpen();
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = e => {
     e.preventDefault();
     console.log('submitted');
     // Perform any other necessary actions here
@@ -77,11 +78,34 @@ const MentorLogin = () => {
           <DrawerHeader>Create your Mentor account</DrawerHeader>
           <DrawerBody>
             <Container>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
             </Container>
 
             <form onSubmit={handleFormSubmit}>
+<<<<<<< HEAD
+=======
+              <FormControl isRequired>
+                <FormLabel htmlFor="first-name">First name</FormLabel>
+                <Input
+                  id="first-name"
+                  placeholder="First name"
+                  value={firstName}
+                  onChange={e => setFirstName(e.target.value)}
+                />
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel htmlFor="last-name">Last name</FormLabel>
+                <Input
+                  id="last-name"
+                  placeholder="Last name"
+                  value={lastName}
+                  onChange={e => setLastName(e.target.value)}
+                />
+              </FormControl>
+>>>>>>> main
               <VStack spacing={4}>
                 <FormControl isRequired>
                   <FormLabel htmlFor="first-name">User Name</FormLabel>
@@ -103,7 +127,7 @@ const MentorLogin = () => {
                     type="email"
                     placeholder="Email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={e => setEmail(e.target.value)}
                   />
                   {email ? (
                     <FormHelperText>
@@ -120,7 +144,7 @@ const MentorLogin = () => {
                   <Select
                     placeholder="Select option"
                     value={mentorOption}
-                    onChange={(e) => setMentorOption(e.target.value)}
+                    onChange={e => setMentorOption(e.target.value)}
                   >
                     <option value="option1">0-1 Years</option>
                     <option value="option2">1-5 Years</option>
@@ -134,6 +158,7 @@ const MentorLogin = () => {
               <Button type="submit" form="my-form">
               Create Account
               </Button>
+<<<<<<< HEAD
               <Container>
                 Have an account? Login below.
               </Container>
@@ -150,6 +175,11 @@ const MentorLogin = () => {
                   <FormLabel htmlFor="password">Password</FormLabel>
                   <PasswordInput />
                 </FormControl>
+=======
+              <Link to="/mentorhome">
+                <Button type="button">GO Mentor</Button>
+              </Link>
+>>>>>>> main
             </form>
           </DrawerBody>
           <DrawerFooter>
@@ -164,6 +194,7 @@ const MentorLogin = () => {
 };
 
 export default MentorLogin;
+<<<<<<< HEAD
 
 
 
@@ -173,3 +204,5 @@ export default MentorLogin;
 
 
 
+=======
+>>>>>>> main

@@ -1,98 +1,96 @@
-import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-  Flex,
-  Container,
-  WrapItem,
-} from '@chakra-ui/react';
-// import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
-import MentorLogin from './component/MentorLogin';
-import MenteeLogin from './component/MenteeLogin';
-import AboutButton from './component/About';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { Signin as LoginPage } from './component/LoginPage';
-import { Footer } from './component/Footer';
-import { Header } from './component/Header';
-import { SignupPage } from './component/SignupPage';
-import MenteeHomepage from './component/MenteeHomepage';
-import { Outlet } from 'react-router-dom';
+'./pages/LoginPage';
+import MentorAccount from './components/MentorAccount';
+import MentorCalendar from './components/MentorCalendar';
+import MentorHomepage from './pages/MentorHomepage';
+import MentorSession from './components/MentorSession';
+import { SignupPage } from './pages/SignupPage';
+import AboutButton from './components/About';
+import { WhenLoggedIn, WhenNotLoggedIn } from './components/GuardShells';
+import MenteeLogin from './components/MenteeLogin';
+import { AppContextContainer, USER_TYPE } from './services/appContext';
+import { useAuth } from './services/authSelector';
+import MenteeHomepage from './components/MenteeHomepage'
+import { Navigate } from 'react-router-dom'
 
 const CompContainer = ({ children }) => children ?? <></>;
 
-const LandingPage = () => (
-  <Box textAlign="center" fontSize="xl">
-    <Grid minH="100vh" p={3}>
-      <VStack spacing={8}>
-        <Logo h="40vmin" pointerEvents="none" />
-        <Flex justify="space-between" align="center">
-          <MentorLogin />
-          <Box mx={4} />
-          <MenteeLogin />
-        </Flex>
-        <Link to="/login" />
-        <AboutButton />
-      </VStack>
-    </Grid>
-  </Box>
-);
+const HomePage = () => {
+  const { user } = useAuth();
+
+  return (
+    <>
+      <WhenNotLoggedIn>You must be logged in</WhenNotLoggedIn>
+      <WhenLoggedIn>
+        {user?.userType === USER_TYPE.MENTOR ? <MentorHomepage /> : <></>}
+      </WhenLoggedIn>
+    </>
+  );
+};
+const LandingPage = () => {
+  return (
+    <>
+      <WhenLoggedIn>You are logged in already </WhenLoggedIn>
+      <WhenNotLoggedIn>
+        <Box textAlign="center" fontSize="xl">
+          <Grid minH="100vh" p={3}>
+            <VStack spacing={8}>
+              <Logo h="40vmin" pointerEvents="none" />
+              <HStack spacing={10}>
+                <MentorLogin />
+                <MenteeLogin />
+              </HStack>
+              <Link to="/login" />
+              <AboutButton />
+            </VStack>
+          </Grid>
+        </Box>
+      </WhenNotLoggedIn>
+    </>
+  );
+};
 
 const RoutingComp = () => {
   return (
-    <Box>
+    <Box h="80vh" p={4} id="appRoutingContainer">
       <Routes>
-        {/* Existing routes */}
-        <Route path="/landing" element={<LandingPage />} />
+        <Route
+          path="/home"
+          element={
+            <>
+              <WhenNotLoggedIn>
+                <LandingPage />
+              </WhenNotLoggedIn>
+              <WhenLoggedIn>
+                <HomePage />
+              </WhenLoggedIn>
+            </>
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={<LandingPage />} />
         <Route path="/profile" element={<LandingPage />} />
-        <Route path="/calendar" element={<LandingPage />} />
-
-        {/* Nested route */}
-        <Route path="/mentee/*" element={<MenteeParent />}>
-          <Route path="mentee-test" element={<MenteeHomepage />} />
-        </Route>
-
-        {/* Default route */}
+        <Route path="/mentee-homepage" element={<MenteeHomepage />} />
         <Route path="/" element={<Navigate to="/landing" />} />
+        <Route path="/account" element={<MentorAccount />} />
+        <Route path="/session" element={<MentorSession />} />
+        <Route path="/calendar" element={<MentorCalendar />} />
+        {/* <Route path="/" element={<LandingPage />} /> */}
       </Routes>
     </Box>
   );
 };
 
 
-
-const MenteeParent = () => {
-  return (
-    <>
-      
-       
-       <MenteeHomepage/>  
-     
-     
-      
-    
-    </>
-  );
-};
-
-
 export const App = () => {
   return (
-    <ChakraProvider theme={theme}>
-      <Header />
-      <Container/>
-      <RoutingComp />
-      <Footer />
-    </ChakraProvider>
+    <AppContextContainer>
+      <ChakraProvider theme={theme}>
+        <Header />
+        <RoutingComp />
+        <Footer />
+      </ChakraProvider>
+    </AppContextContainer>
   );
 };
 

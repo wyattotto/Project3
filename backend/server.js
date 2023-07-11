@@ -1,37 +1,25 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-const session = require('express-session');  // For handling sessions
-const passport = require('passport');  // Passport.js for authentication
+const { authMiddleware } = require('./utils/auth');
 
-// Passport.js configuration
-require('./config/passport')(passport);
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+const { users } = require('./user');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: authMiddleware,
 });
-
-// Express session middleware
-app.use(
-  session({
-    secret: 'secret',  // Replace 'secret' with your own secret phrase
-    resave: true,
-    saveUninitialized: true
-  })
-);
-
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use('/auth', authRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/build')));
@@ -50,8 +38,8 @@ const startApolloServer = async (typeDefs, resolvers) => {
         app.listen(PORT, () => {
             console.log(`API server running on port ${PORT}!`);
             console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-        })
-    })
+        });
+    });
 };
 
 // Call the async function to start the server
