@@ -20,7 +20,21 @@ const resolvers = {
         focus: args.focus
       });
     },
-
+    abouts: async (parent, args) => {
+      return User.find({
+        about: args.about
+      });
+    },
+    educations: async (parent, args) => {
+      return User.find({
+        education: args.education
+      });
+    },
+    whys: async (parent, args) => {
+      return User.find({
+        why: args.why
+      });
+    },
   },
 
   Mutation: {
