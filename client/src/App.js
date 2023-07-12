@@ -96,6 +96,7 @@ const RoutingComp = () => {
         <Route path="/account" element={<MentorAccount />} />
         <Route path="/session" element={<MentorSession />} />
         <Route path="/calendar" element={<MentorCalendar />} />
+        <Route path="/mentor-homepage" element={<MentorHomepage />} />
         {/* <Route path="/" element={<LandingPage />} /> */}
       </Routes>
     </Box>
