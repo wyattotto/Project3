@@ -3,12 +3,42 @@ import React from 'react';
 import MentorCalendar from '../components/MentorCalendar';
 import MentorReminder from '../components/MentorReminder';
 import useMentorUserInfo from '../services/queryMutationHooks';
+import {useQuery,gql} from '@apollo/client';
+
+const MENTOR_USER_INFO_QUERY = gql`
+  query MentorUserInfo {
+    user {
+      _id
+      email
+      focus
+      role
+      education
+      about
+      username
+      why
+      image_url
+      reviews {
+        reviewText
+        reviewAuthor
+        createdAt
+      }
+    }
+  }
+`;
 function MentorHomepage() {
   // make a grid of repeat(3,1fr) using chakra ui
-  const { mentor, loading, error } = useMentorUserInfo();
+//   const { mentor, loading, error } = useMentorUserInfo();
+// console.log(mentor);
+//   if (loading) return <div>Loading...</div>;
+//   if (error) return <div>Error! {error.message}</div>;
+const {data} = useQuery(MENTOR_USER_INFO_QUERY);
+if (data){
+  console.log(data.user); 
+}
+else
+{console.log("no data")}
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error! {error.message}</div>;
+console.log("35"+ data.user);
 
   return (
     <Grid
@@ -21,7 +51,7 @@ function MentorHomepage() {
       <Box bg="ActiveBorder" gridColumn="1 / 1">
         <div>
           <h2>
-            <img src={mentor.image_url} alt="mentor profile image" />
+            <img src={data.image_url} alt="mentor profile image" />
           </h2>
         </div>
       </Box>
@@ -77,22 +107,22 @@ function MentorAchievement() {
 }
 
 function GeneralInfo() {
-  const { mentor, loading, error } = useMentorUserInfo();
+  const { user } = useMentorUserInfo();
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error! {error.message}</div>;
+  // if (loading) return <div>Loading...</div>;
+  // if (error) return <div>Error! {error.message}</div>;
 
   //show the mentor general info styled with chakra ui
   return (
     <div>
       <h2>General Info</h2>
       <div>
-        <h3>Username: {mentor.username}</h3>
-        <h3>Email: {mentor.email}</h3>
-        <h3>Focus: {mentor.focus}</h3>
-        <h3>Education: {mentor.education}</h3>
-        <h3>About: {mentor.about}</h3>
-        <h3>Why: {mentor.why}</h3>
+        <h3>Username: {user.username}</h3>
+        <h3>Email: {user.email}</h3>
+        <h3>Focus: {user.focus}</h3>
+        <h3>Education: {user.education}</h3>
+        <h3>About: {user.about}</h3>
+        <h3>Why: {user.why}</h3>
       </div>
     </div>
   );

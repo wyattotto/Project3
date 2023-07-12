@@ -35,11 +35,43 @@ const resolvers = {
         why: args.why
       });
     },
-    user: async(parent,args,ctx)=>{
-      //return null if no user
-      const user = await User.findById(ctx.user._id)
-      return user
+    // user: async(parent,args,ctx)=>{
+    //   console.log(ctx)
+    //   const user = await User.findById(ctx.user._id)
+    //   return user
+    // }
+    // user: async (parent, args, ctx) => {
+    //   if (!ctx.user) {
+    //     // If there is no user in the context, return null
+    //     return null;
+    //   }
+      
+    //   try {
+    //     const user = await User.findById(ctx.user._id);
+    //     return user;
+    //   } catch (error) {
+    //     // Handle any potential errors that occur during the database query
+    //     console.error('Error retrieving user:', error);
+    //     throw new Error('An error occurred while retrieving the user.');
+    //   }
+    // }
+  //   user: async (parent, args, ctx) => {
+  // if (!ctx.user) {
+  //   // If there is no user in the context, return an empty array
+  //   return [];
+  // }
+  user: async (parent, args, context) => {
+    if (context.user) {
+      const user = await User.findById(context.user._id)
+
+
+      return user;
     }
+  
+  
+}
+
+    
   },
 
   Mutation: {

@@ -60,7 +60,7 @@ export const Signin = () => {
 
   const handleSubmit = (
     event,
-    userType = 'MENTEE' // 'MENTEE' as default user type
+    userType = 'MENMTEE' // 'MENTEE' as default user type
   ) => {
     event.preventDefault();
     if ([undefined, ''].includes(creds.password) || [undefined, ''].includes(creds.email)) {

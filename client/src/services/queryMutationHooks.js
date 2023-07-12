@@ -22,6 +22,20 @@ const MENTOR_USER_INFO_QUERY = gql`
     }
   }
 `;
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      thoughts {
+        _id
+        thoughtText
+        createdAt
+      }
+    }
+  }
+`;
 
 //make ageneric mutation  hook that takes a query and optaional data  appends token headers
 export function useMutationWithToken(query, data = {}) {
@@ -42,33 +56,32 @@ export function useMutationWithToken(query, data = {}) {
 }
 
 //make ageneric query  hook that takes a query and optaional data  appends token headers
-export function useQueryWithToken(query, data = {}) {
-  const { token } = useAuth();
-  const {
-    loading,
-    error,
-    data: queryData,
-  } = useQuery(query, {
-    context: {
-      headers: {
-        authorization: token ? `Bearer ${token}` : '',
-      },
-    },
-    variables: data,
-  });
+// export function useQueryWithToken(query, data = {}) {
+//   const { token } = useAuth();
+//   const {
+//     loading,
+//     error,
+//     data: queryData,
+//   } = useQuery(query, {
+//     context: {
+//       headers: {
+//         authorization: token ? `Bearer ${token}` : '',
+//       },
+//     },
+//     variables: data,
+//   });
 
-  return { loading, error, queryData };
-}
+//   return { loading, error, queryData };
+// }
+
 
 export default function useMentorUserInfo() {
-  const {
-    loading,
-    error,
-    queryData: data,
-  } = useQueryWithToken(MENTOR_USER_INFO_QUERY);
-  const mentor = data?.user || {};
-  return { loading, error, mentor };
-}
+ const { data } = useQuery(QUERY_USER);
+  let user;
+
+  if (data) {
+    user = data.user;
+  }}
 
 export async function getCalendlyScheduledEvents(calendly_id) {
   const events = await fetch(
