@@ -17,8 +17,10 @@ import {
   import React from 'react';
   import icecreamImage from '../assets/Icecreamscoop.jpeg';
   import coneImage from '../assets/Cone.jpeg';
-  
+  import { useNavigate } from 'react-router-dom';
+
   const MenteeHomepage = () => {
+
     return (
       <Container>
         <Heading>Welcome Mentee!</Heading>
@@ -81,6 +83,7 @@ import {
       reviewCount: 34,
       formattedPrice: 'Title of the mentor',
     };
+    const navigate = useNavigate();
   
     return (
       <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="4">
@@ -93,9 +96,9 @@ import {
         </Box>
   
         <Box display="flex" mt="2" alignItems="center">
-          <Button colorScheme="teal" size="sm">
-            Schedule a Session
-          </Button>
+        <Button colorScheme="teal" size="sm" onClick={() => navigate('/calendar')}>
+    Schedule a Session
+  </Button>
           {/* Replace the StarIcon component with an appropriate icon component */}
           {/* Example: */}
         
