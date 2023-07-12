@@ -28,6 +28,8 @@ import { AppContextContainer, USER_TYPE } from './services/appContext';
 import { useAppContext, useAuth } from './services/authSelector';
 import MenteeHomepage from './components/MenteeHomepage';
 import { Navigate } from 'react-router-dom';
+import PaymentForm from './components/PaymentForm';
+import  Stripe  from './components/Test';
 import { useQuery } from '@apollo/client';
 
 const CompContainer = ({ children }) => children ?? <></>;
@@ -87,6 +89,7 @@ const RoutingComp = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={<LandingPage />} />
+        <Route path="/payment" element={<PaymentForm/>} />
         <Route path="/profile" element={<LandingPage />} />
         <Route path="/mentee-homepage" element={<MenteeHomepage />} />
         <Route path="/" element={<Navigate to="/landing" />} />
