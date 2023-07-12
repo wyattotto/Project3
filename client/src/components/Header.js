@@ -58,7 +58,7 @@ export const Header = () => {
           <Link key={10} to="/signup">
             Signup
           </Link>
-        </WhenNotLoggedIn> ̰
+        </WhenNotLoggedIn> 
         <ColorModeSwitcher justifySelf="flex-end" />
       </Stack>
     </Stack>
