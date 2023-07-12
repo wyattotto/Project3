@@ -4,13 +4,11 @@
   "description": "a mentor and mentee platform",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend": "npm --prefix my-app run start",
-    "backend": "npm --prefix backend run start",
-    "dev": "concurrently \"npm run frontend\" \"npm run backend\" ",
-    "install:backend": "npm --prefix backend install",
-    "install:frontend": "npm --prefix my-app install",
-    "postinstall": "npm run install:backend && npm run install:frontend"
+    "start": "node server --ignore client",
+    "develop": "concurrently \"cd server && npm run start\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",

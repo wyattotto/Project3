@@ -15,7 +15,7 @@ export const Header = () => {
   const onLogout = event => {
     event.preventDefault(); // Prevents default refresh by the browser
     logout();
-    navigate('/home');
+    // navigate('/home');
   };
 
   return (
