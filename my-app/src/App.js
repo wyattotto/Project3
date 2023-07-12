@@ -92,7 +92,7 @@ const RoutingComp = () => {
         <Route path="/payment" element={<PaymentForm/>} />
         <Route path="/profile" element={<LandingPage />} />
         <Route path="/mentee-homepage" element={<MenteeHomepage />} />
-        <Route path="/" element={<Navigate to="/landing" />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/account" element={<MentorAccount />} />
         <Route path="/session" element={<MentorSession />} />
         <Route path="/calendar" element={<MentorCalendar />} />
