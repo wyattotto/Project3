@@ -109,11 +109,6 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
             </Container>
 
             <form onSubmit={handleFormSubmit}>
-<<<<<<< HEAD:my-app/src/component/MentorLogin.js
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 9d15220a14b319abd105aff936b432d2a1093430:my-app/src/components/MentorLogin.js
               <FormControl isRequired>
                 <FormLabel htmlFor="first-name">First name</FormLabel>
                 <Input
@@ -132,10 +127,6 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
                   onChange={e => setLastName(e.target.value)}
                 />
               </FormControl>
-<<<<<<< HEAD:my-app/src/component/MentorLogin.js
->>>>>>> main
-=======
->>>>>>> 9d15220a14b319abd105aff936b432d2a1093430:my-app/src/components/MentorLogin.js
               <VStack spacing={4}>
                 <FormControl isRequired>
                   <FormLabel htmlFor="first-name">User Name</FormLabel>
@@ -168,30 +159,11 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
                   )}
                 </FormControl>
               </VStack>
-              <VStack spacing={4}>
-                {/* <FormControl>
-                  <FormLabel>Years of Experience</FormLabel>
-                  <Select
-                    placeholder="Select option"
-                    value={mentorOption}
-                    onChange={e => setMentorOption(e.target.value)}
-                  >
-                    <option value="option1">0-1 Years</option>
-                    <option value="option2">1-5 Years</option>
-                    <option value="option3">5+</option>
-                  </Select>
-                </FormControl> */}
-              </VStack>
               <VStack spacing={6}>
-                {/* Add any form controls or elements you want here */}
               </VStack>
               <Button type="submit" form="my-form">
               Create Account
               </Button>
-<<<<<<< HEAD:my-app/src/component/MentorLogin.js
-<<<<<<< HEAD
-=======
->>>>>>> 9d15220a14b319abd105aff936b432d2a1093430:my-app/src/components/MentorLogin.js
               <Container>
                 Have an account? Login below.
               </Container>
@@ -208,17 +180,12 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
                   <FormLabel htmlFor="password">Password</FormLabel>
                   <PasswordInput />
                 </FormControl>
-<<<<<<< HEAD:my-app/src/component/MentorLogin.js
-=======
               <Link to="/mentorhome">
                 <Button type="button">GO Mentor</Button>
               </Link>
->>>>>>> main
-=======
               <Link to="/mentorhome">
                 <Button type="button">GO Mentor</Button>
               </Link>
->>>>>>> 9d15220a14b319abd105aff936b432d2a1093430:my-app/src/components/MentorLogin.js
             </form>
           </DrawerBody>
           <DrawerFooter>
@@ -233,10 +200,6 @@ const [addUser, { data, loading, error }] = useMutation(ADD_USER);
 };
 
 export default MentorLogin;
-<<<<<<< HEAD:my-app/src/component/MentorLogin.js
-<<<<<<< HEAD
-=======
->>>>>>> 9d15220a14b319abd105aff936b432d2a1093430:my-app/src/components/MentorLogin.js
 
 
 
@@ -245,9 +208,3 @@ export default MentorLogin;
 
 
 
-
-<<<<<<< HEAD:my-app/src/component/MentorLogin.js
-=======
->>>>>>> main
-=======
->>>>>>> 9d15220a14b319abd105aff936b432d2a1093430:my-app/src/components/MentorLogin.js

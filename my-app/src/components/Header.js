@@ -8,15 +8,9 @@ import { WhenNotLoggedIn, WhenLoggedIn } from './GuardShells';
 export const Header = () => {
   //hide logo on landing page
   const location = useLocation();
-<<<<<<< HEAD:my-app/src/component/Header.js
-  const { email } = useAuth();
-=======
   const { email, logout } = useAuth();
-  const navigate = useNavigate();
->>>>>>> 9d15220a14b319abd105aff936b432d2a1093430:my-app/src/components/Header.js
 
   const isLanding = '/landing' === location.pathname;
-
   const showLogo = (_isLanding = isLanding) => (_isLanding ? <></> : <Logo />);
   const onLogout = event => {
     event.preventDefault(); // Prevents default refresh by the browser

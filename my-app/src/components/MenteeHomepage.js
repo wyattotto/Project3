@@ -13,7 +13,7 @@ import {
     FormLabel,
     Select,
   } from '@chakra-ui/react';
-  import { SearchIcon } from '@chakra-ui/icons';
+  // import { SearchIcon } from '@chakra-ui/icons';
   import React from 'react';
   import icecreamImage from '../assets/Icecreamscoop.jpeg';
   import coneImage from '../assets/Cone.jpeg';
