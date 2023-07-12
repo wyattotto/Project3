@@ -16,10 +16,10 @@ import { AppContextContainer } from './services/appContext';
 const client = new ApolloClient({
   uri: process.env.REACT_APP_URI,
   cache: new InMemoryCache(),
-  // headers: {
-  //   authorization:
-  //     `bearer ${JSON.stringify(localStorage.getItem('authData')).token} ` || '',
-  // },
+  headers: {
+    authorization:
+      `bearer ${JSON.stringify(localStorage.getItem('authData')).token} ` || '',
+  },
 });
 
 const container = document.getElementById('root');
