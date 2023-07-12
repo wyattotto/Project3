@@ -28,7 +28,7 @@ import {
           <Box flex="1" ml="4">
             <Box>
               <h2>What's the Scoop?</h2>
-              There are many benefits to a joint design and development system. Not only does it bring benefits to the design team, but it also brings benefits to engineering teams. It makes sure that our experiences have a consistent look and feel, not just in our design specs, but in production.
+              There are many things that go into being successful. Sometimes we may have all the ingredients but not the proper equipment. But that’s ok because we are here to help mix all the parts together and create amazing!
             </Box>
           </Box>
         </Box>
@@ -36,8 +36,8 @@ import {
         <Box display="flex" alignItems="left" justify="space-between" mt="4">
           <Box flex="1" mr="4">
             <Box>
-              <h2>What's the Scoop?</h2>
-              There are many benefits to a joint design and development system. Not only does it bring benefits to the design team, but it also brings benefits to engineering teams. It makes sure that our experiences have a consistent look and feel, not just in our design specs, but in production.
+              <h2>Choose a Flavor...</h2>
+              With the help of some amazing industry professional, we can assist with building your career and taking it to new tiers. Choose your ideal career from the menu below and explore your options of mentors. Book a session and build something cool.
             </Box>
           </Box>
           <Image src={coneImage} borderRadius="full" boxSize="200px" alt="Ice Cream Scoop" />
@@ -48,6 +48,10 @@ import {
           <Select id="country" placeholder="Select Role">
             <option>Software Developer</option>
             <option>UX/UI</option>
+            <option>Cloud Engineer</option>
+            <option>Product Manager</option>
+            <option>Tech Sales</option>
+            <option>Cybersecurity</option>
           </Select>
         </FormControl>
   
@@ -69,10 +73,10 @@ import {
   
   function AirbnbExample() {
     const mentor = {
-      imageUrl: 'https://bit.ly/2Z4KKcF',
-      imageAlt: 'Rear view of modern home with pool',
-      beds: 3,
-      baths: 2,
+      imageUrl: 'https://bit.ly/2Z4KKcF', 
+      // this image is not needed
+      imageAlt: 'mentor image',
+      
       title: 'Name of the mentor',
       reviewCount: 34,
       formattedPrice: 'Title of the mentor',

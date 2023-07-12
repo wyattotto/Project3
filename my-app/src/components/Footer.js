@@ -3,7 +3,7 @@ import { Box, Stack } from "@chakra-ui/react";
 export const Footer = () => {
   return (
     <Box
-      position="sticky"
+      position="fixed"
       bottom={0}
       left={0}
       right={0}
