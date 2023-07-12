@@ -4,11 +4,8 @@
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { USER_TYPE } from '../services/appContext';
 import { useAppContext, useAuth } from '../services/authSelector';
 import { useMutation, gql } from '@apollo/client';
-
-const ROLE = { MENTOR: 'MENTOR', MENTEE: 'MENTEE' };
 
 const LOGIN_MUTATION = gql`
   mutation Login($email: String!, $password: String!) {
@@ -40,8 +37,6 @@ export const Signin = () => {
         user: {
           email,
           username,
-          userType: USER_TYPE.MENTOR,
-          calendly_url: 'https://calendly.com/demoproject3',
         },
         token,
       };
@@ -63,29 +58,24 @@ export const Signin = () => {
     setCreds({ ...creds, password: event.target.value });
   };
 
-  //show signin form with a submit button and just set fake credentials
   const handleSubmit = (
     event,
-    email = creds.email,
-    password = creds.password
+    userType = 'MENTEE' // 'MENTEE' as default user type
   ) => {
-    event.preventDefault(); //stop the from from executing the default behaviour of reloading the page
-    //validate or fail
-    if ([undefined, ''].includes(password) || [undefined, ''].includes(email)) {
+    event.preventDefault();
+    if ([undefined, ''].includes(creds.password) || [undefined, ''].includes(creds.email)) {
       throw new Error('invalid credentials');
     }
-
-    //send creds to the backed using graphql
-    // graphql call goes here
     login({ variables: { email: creds.email, password: creds.password } });
+    navigate(userType === 'MENTEE' ? '/mentee-homepage' : '/mentor-homepage');
   };
 
   useEffect(() => {
-    isLoggedIn && navigate('/mentee-homepage'); //kick the userto hom if they are logged
+    isLoggedIn && navigate('/mentee-homepage');
   }, [isLoggedIn, navigate]);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       {/* email/username */}
       <FormControl>
         <FormLabel>Email/username</FormLabel>
@@ -109,8 +99,12 @@ export const Signin = () => {
         />
       </FormControl>
       {/* submit */}
-      <Button type="submit">Submit</Button>
+      <Button onClick={(event) => handleSubmit(event, 'MENTEE')}>
+        Mentee Login
+      </Button>
+      <Button onClick={(event) => handleSubmit(event, 'MENTOR')}>
+        Mentor Login
+      </Button>
     </form>
   );
 };
-

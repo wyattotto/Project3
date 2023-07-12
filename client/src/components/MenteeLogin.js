@@ -27,11 +27,16 @@ const MenteeLogin = () => {
     onOpen();
   };
 
+  const handleLogin = () => {
+    console.log("Login button clicked");
+    // Add your login logic here
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     
     addUser({ variables: { username: firstName, email, password: 'yourpassword' } });
-    nav.push("/mentee-homepage");
+    nav("/mentee-homepage");
     if (error) {
       console.log("Error occurred:", error);
     } else if (data) {
@@ -42,7 +47,7 @@ const MenteeLogin = () => {
   return (
     <>
       <Button size="lg" onClick={handleButtonClick}>
-        Mentor
+        Mentee
       </Button>
       <Drawer isOpen={isOpen} onClose={onClose}>
         <DrawerOverlay />
@@ -50,7 +55,7 @@ const MenteeLogin = () => {
           <DrawerCloseButton />
           <DrawerHeader>Create your Mentee account</DrawerHeader>
           <DrawerBody>
-            <form onSubmit={handleFormSubmit}>
+            <form id="my-form" onSubmit={handleFormSubmit}>
               <FormControl isRequired>
                 <FormLabel htmlFor="first-name">First name</FormLabel>
                 <Input
@@ -101,13 +106,13 @@ const MenteeLogin = () => {
                   )}
                 </FormControl>
               </VStack>
-              <Button type="submit" form="my-form">
+              <Button type="submit">
                 Create Account
               </Button>
             </form>
           </DrawerBody>
           <DrawerFooter>
-            <Button type="submit" form="my-form">
+            <Button onClick={handleLogin}>
               Login
             </Button>
           </DrawerFooter>
