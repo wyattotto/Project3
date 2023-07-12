@@ -1,7 +1,6 @@
 /**
  * @description show the mentee login by default with a toggle switch to sshow the mentor login
  */
-
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -82,7 +81,7 @@ export const Signin = () => {
   };
 
   useEffect(() => {
-    isLoggedIn && navigate('/home'); //kick the userto hom if they are logged
+    isLoggedIn && navigate('/mentee-homepage'); //kick the userto hom if they are logged
   }, [isLoggedIn, navigate]);
 
   return (
@@ -114,3 +113,4 @@ export const Signin = () => {
     </form>
   );
 };
+
