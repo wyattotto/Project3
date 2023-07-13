@@ -58,16 +58,31 @@ export const Signin = () => {
     setCreds({ ...creds, password: event.target.value });
   };
 
+  // const handleSubmit = (
+  //   event,
+  //   userType = 'MENMTEE' // 'MENTEE' as default user type
+  // ) => {
+  //   event.preventDefault();
+  //   // if ([undefined, ''].includes(creds.password) || [undefined, ''].includes(creds.email)) {
+  //   //   throw new Error('invalid credentials');
+  //   // }
+  //   // login({ variables: { email: creds.email, password: creds.password } });
+  //   navigate('/mentor-homepage');
+  // };
   const handleSubmit = (
     event,
-    userType = 'MENMTEE' // 'MENTEE' as default user type
+    userType = 'MENTEE' // 'MENTEE' as default user type
   ) => {
     event.preventDefault();
-    if ([undefined, ''].includes(creds.password) || [undefined, ''].includes(creds.email)) {
-      throw new Error('invalid credentials');
+  
+    // If user is a mentee, navigate to mentee homepage
+    if (userType === 'MENTEE') {
+      navigate('/mentee-homepage');
+    } 
+    // If user is a mentor, navigate to mentor homepage
+    else if (userType === 'MENTOR') {
+      navigate('/mentor-homepage');
     }
-    login({ variables: { email: creds.email, password: creds.password } });
-    navigate(userType === 'MENTEE' ? '/mentee-homepage' : '/mentor-homepage');
   };
 
   useEffect(() => {

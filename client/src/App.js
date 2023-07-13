@@ -32,6 +32,9 @@ import PaymentForm from './components/PaymentForm';
 import  Stripe  from './components/Test';
 import { useQuery } from '@apollo/client';
 
+
+const isDemoMode = process.env.REACT_APP_DEMO_MODE === 'true';
+
 const CompContainer = ({ children }) => children ?? <></>;
 
 const HomePage = () => {
