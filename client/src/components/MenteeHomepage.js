@@ -17,10 +17,12 @@ import {
   import React from 'react';
   import icecreamImage from '../assets/Icecreamscoop.jpeg';
   import coneImage from '../assets/Cone.jpeg';
+  import { useNavigate } from 'react-router-dom';
+
   
   const MenteeHomepage = () => {
     return (
-      <Container>
+      <Container  style={{ paddingBottom: '60px' }}>
         <Heading>Welcome Mentee!</Heading>
   
         <Box display="flex" alignItems="left" justify="space-between" mt="4">
@@ -70,13 +72,15 @@ import {
       </Container>
     );
   };
+
+  
   
   function AirbnbExample() {
+    const navigate = useNavigate();
+  
     const mentor = {
-      imageUrl: 'https://bit.ly/2Z4KKcF', 
-      // this image is not needed
+      imageUrl: 'https://bit.ly/2Z4KKcF',
       imageAlt: 'mentor image',
-      
       title: 'Name of the mentor',
       reviewCount: 34,
       formattedPrice: 'Title of the mentor',
@@ -93,7 +97,7 @@ import {
         </Box>
   
         <Box display="flex" mt="2" alignItems="center">
-          <Button colorScheme="teal" size="sm">
+          <Button colorScheme="teal" size="sm" onClick={() => navigate('/calendar')}>
             Schedule a Session
           </Button>
           {/* Replace the StarIcon component with an appropriate icon component */}
@@ -103,6 +107,7 @@ import {
       </Box>
     );
   }
+  
   
   export default MenteeHomepage;
   
