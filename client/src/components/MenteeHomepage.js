@@ -12,6 +12,7 @@ import {
     FormControl,
     FormLabel,
     Select,
+    Flex
   } from '@chakra-ui/react';
   // import { SearchIcon } from '@chakra-ui/icons';
   import React from 'react';
@@ -65,7 +66,7 @@ import {
             <WrapItem>
               {/* Insert your other components or content here */}
               {/* Example: */}
-              <AirbnbExample />
+              <MentorBoxes />
             </WrapItem>
           </Wrap>
         </Box>
@@ -75,38 +76,85 @@ import {
 
   
   
-  function AirbnbExample() {
+  // function AirbnbExample() {
+  //   const navigate = useNavigate();
+  
+  //   const mentor = {
+  //     imageUrl: 'https://bit.ly/2Z4KKcF',
+  //     imageAlt: 'mentor image',
+  //     title: 'Name of the mentor',
+  //     reviewCount: 34,
+  //     formattedPrice: 'Title of the mentor',
+  //   };
+  
+  //   return (
+  //     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="4">
+  //       <Image src={mentor.imageUrl} alt={mentor.imageAlt} />
+  
+  //       <Box display="flex" alignItems="baseline" mt="2">
+  //         <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
+  //           {mentor.title}
+  //         </Box>
+  //       </Box>
+  
+  //       <Box display="flex" mt="2" alignItems="center">
+  //         <Button colorScheme="teal" size="sm" onClick={() => navigate('/calendar')}>
+  //           Schedule a Session
+  //         </Button>
+  //         {/* Replace the StarIcon component with an appropriate icon component */}
+  //         {/* Example: */}
+        
+  //       </Box>
+  //     </Box>
+  //   );
+  // }
+  function MentorBox({ mentor }) {
     const navigate = useNavigate();
-  
-    const mentor = {
-      imageUrl: 'https://bit.ly/2Z4KKcF',
-      imageAlt: 'mentor image',
-      title: 'Name of the mentor',
-      reviewCount: 34,
-      formattedPrice: 'Title of the mentor',
-    };
-  
+    
     return (
       <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" p="6" mt="4">
         <Image src={mentor.imageUrl} alt={mentor.imageAlt} />
-  
         <Box display="flex" alignItems="baseline" mt="2">
           <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
             {mentor.title}
           </Box>
         </Box>
-  
         <Box display="flex" mt="2" alignItems="center">
           <Button colorScheme="teal" size="sm" onClick={() => navigate('/calendar')}>
             Schedule a Session
           </Button>
-          {/* Replace the StarIcon component with an appropriate icon component */}
-          {/* Example: */}
-        
         </Box>
       </Box>
     );
   }
+  
+  export const MentorBoxes = () => {
+    const mentors = [
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1627161683077-e34782c24d81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=703&q=80',
+        imageAlt: 'mentor image',
+        title: 'Mia Sullivan',
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1595211877493-41a4e5f236b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=715&q=80',
+        imageAlt: 'mentor image',
+        title: 'Benjamin Anderson',
+      },
+      {
+        imageUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+        imageAlt: 'mentor image',
+        title: 'James Mitchell',
+      },
+    ];
+  
+    return (
+      <Flex direction="row" justify="space-between">
+        {mentors.map((mentor, index) => (
+          <MentorBox key={index} mentor={mentor} />
+        ))}
+      </Flex>
+    );
+  };
   
   
   export default MenteeHomepage;
