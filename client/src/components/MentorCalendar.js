@@ -48,7 +48,7 @@ function MentorCalendar() {
 
   return (
     <Stack direction="column">
-      <Button colorScheme="teal" size="lg" onClick={onOpen}>
+      <Button colorScheme="yellow" size="lg" onClick={onOpen}>
         Schedule a Meeting
       </Button>
       <PopupModal

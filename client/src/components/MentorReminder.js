@@ -29,15 +29,13 @@ function MentorReminder() {
       title: 'Mock Interview ',
       date: 'Aug 12, 2023',
       time: '4:00pm-4:30pm',
-      comment:
-        'Entry-level developer position at Google.',
+      comment: 'Entry-level developer position at Google.',
     },
     {
       title: 'Resume building',
       date: 'Aug 14, 2023',
       time: '1:00pm-2:00pm',
-      comment:
-        'Mentee is looking for internship opportunities.',
+      comment: 'Mentee is looking for internship opportunities.',
     },
     {
       title: 'Project Management interview prep',
@@ -54,12 +52,12 @@ function MentorReminder() {
         'Mentee is looking to build vital skills for career development.',
     },
     {
-        title: 'Full stack developer interview prep',
-        date: 'Aug 20,2023',
-        time: '2:00pm-3: 00pm',
-        comment:
-          'Mentee is looking to build vital skills for career development.',
-      },
+      title: 'Full stack developer interview prep',
+      date: 'Aug 20,2023',
+      time: '2:00pm-3: 00pm',
+      comment:
+        'Mentee is looking to build vital skills for career development.',
+    },
   ].map((val, index) => {
     //use map to transfor each fake even and a number to the title and an id
     val.time += ` ${index}`;
@@ -77,9 +75,14 @@ function MentorReminder() {
   return (
     <Stack
       direction="column"
-      style={{ overflow: 'scroll', height: '100%', padding: '1.2rem', color: 'white', size: '3pt' }}
+      style={{
+        overflow: 'scroll',
+        height: '100%',
+        padding: '1.2rem',
+        color: 'white',
+        size: '3pt',
+      }}
     >
-      <h2>Reminders</h2>
       <UnorderedList>
         {fakeEvents.map(event => (
           <ListItem key={event.id}>

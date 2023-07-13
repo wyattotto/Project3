@@ -29,9 +29,8 @@ import { useAppContext, useAuth } from './services/authSelector';
 import MenteeHomepage from './components/MenteeHomepage';
 import { Navigate } from 'react-router-dom';
 import PaymentForm from './components/PaymentForm';
-import  Stripe  from './components/Test';
+import Stripe from './components/Test';
 import { useQuery } from '@apollo/client';
-
 
 const isDemoMode = process.env.REACT_APP_DEMO_MODE === 'true';
 
@@ -74,7 +73,11 @@ const LandingPage = () => {
 
 const RoutingComp = () => {
   return (
-    <Box h="80vh" p={4} id="appRoutingContainer">
+    <Box
+      style={{ height: 'clamp(800px,80vh,1200px)', marginBottom: '20px' }}
+      p={4}
+      id="appRoutingContainer"
+    >
       <Routes>
         <Route
           path="/home"
@@ -92,7 +95,7 @@ const RoutingComp = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/home" element={<LandingPage />} />
-        <Route path="/payment" element={<PaymentForm/>} />
+        <Route path="/payment" element={<PaymentForm />} />
         <Route path="/profile" element={<LandingPage />} />
         <Route path="/mentee-homepage" element={<MenteeHomepage />} />
         <Route path="/" element={<LandingPage />} />
